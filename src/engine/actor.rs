@@ -20,6 +20,10 @@ impl Actor {
         }
     }
 
+    pub fn repr(&self) -> char {
+        self.repr
+    }
+
     pub fn walk(&mut self, direction: Direction) {
         self.pos = self.pos.move_dir(direction);
     }

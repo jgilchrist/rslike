@@ -73,8 +73,9 @@ impl GUI {
         self.clear();
 
         let (px, py) = self.game.world.player.pos().as_xy();
+        let repr = self.game.world.player.repr();
 
-        self.console.put_char(px, py, '@', BackgroundFlag::Set);
+        self.console.put_char(px, py, repr, BackgroundFlag::Set);
 
         self.flush();
     }
