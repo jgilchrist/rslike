@@ -1,3 +1,4 @@
+use tcod;
 use tcod::{BackgroundFlag, Console, Key, KeyCode};
 use tcod::{KEY_PRESSED, FONT_LAYOUT_ASCII_INROW, FONT_TYPE_GREYSCALE};
 
@@ -15,12 +16,14 @@ pub struct GUI {
     width: int,
     height: int,
     pub console: Console,
+    state: State,
 }
 
 impl GUI {
     pub fn new(game: Game) -> GUI {
         let (width, height) = (100, 50);
 
+        tcod::system::set_fps(60);
         Console::set_custom_font(Path::new("/home/jonny/code/rslike/assets/fonts/terminal12x12_gs_ro.png"), FONT_LAYOUT_ASCII_INROW | FONT_TYPE_GREYSCALE, 0, 0);
         let console = Console::init_root(width, height, "Libtcod Rust Tutorial", false);
 
@@ -29,11 +32,12 @@ impl GUI {
             width: width,
             height: height,
             console: console,
+            state: State::Running,
         }
     }
 
     pub fn run(&mut self) {
-        while !self.window_closed() {
+        while !self.window_closed() && !self.exited() {
             self.render();
             self.handle_input();
         }
@@ -81,6 +85,10 @@ impl GUI {
 
     pub fn flush(&mut self) {
         Console::flush();
+    }
+
+    pub fn exited(&self) -> bool {
+        self.state == State::Exited
     }
 
     pub fn window_closed(&self) -> bool {
