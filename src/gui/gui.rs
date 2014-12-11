@@ -65,7 +65,7 @@ impl GUI {
 
     }
 
-    pub fn render(&mut self) {
+    fn render(&mut self) {
         self.clear();
 
         let (px, py) = self.game.world.player.pos().as_xy();
