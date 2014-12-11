@@ -1,4 +1,4 @@
-use util::Point;
+use util::units::Point;
 
 pub struct Actor {
     name: String,

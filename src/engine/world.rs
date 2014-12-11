@@ -1,7 +1,7 @@
 use std::vec::Vec;
 
 use engine::Actor;
-use util::Point;
+use util::units::Point;
 
 pub struct World {
     pub player: Actor,
