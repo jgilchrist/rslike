@@ -1,7 +1,14 @@
 use tcod::{BackgroundFlag, Console, Key, KeyCode};
-use tcod::{FONT_LAYOUT_ASCII_INROW, FONT_TYPE_GREYSCALE};
+use tcod::{KEY_PRESSED, FONT_LAYOUT_ASCII_INROW, FONT_TYPE_GREYSCALE};
 
 use engine::Game;
+use util::units::{Direction, XYPair};
+
+#[deriving(PartialEq)]
+pub enum State {
+    Running,
+    Exited
+}
 
 pub struct GUI {
     game: Game,
@@ -28,13 +35,34 @@ impl GUI {
     pub fn run(&mut self) {
         while !self.window_closed() {
             self.render();
+            self.handle_input();
+        }
+    }
 
-            let keypress = Console::wait_for_keypress(true);
+    fn handle_input(&mut self) {
+        let check_key = Console::check_for_keypress(KEY_PRESSED);
 
-            if let Key::Special(KeyCode::Escape) = keypress.key {
-                break;
+        if let Some(keypress) = check_key {
+            match keypress.key {
+                Key::Special(KeyCode::Up) => {
+                    self.game.walk(Direction::Up);
+                },
+                Key::Special(KeyCode::Down) => {
+                    self.game.walk(Direction::Down);
+                },
+                Key::Special(KeyCode::Left) => {
+                    self.game.walk(Direction::Left);
+                },
+                Key::Special(KeyCode::Right) => {
+                    self.game.walk(Direction::Right);
+                },
+                Key::Special(KeyCode::Escape) => {
+                    self.state = State::Exited;
+                },
+                _ => {}
             }
         }
+
     }
 
     pub fn render(&mut self) {

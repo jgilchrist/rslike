@@ -1,4 +1,4 @@
-use util::units::Point;
+use util::units::{Direction, Point};
 
 pub struct Actor {
     name: String,
@@ -18,6 +18,10 @@ impl Actor {
             max_health: max_health,
             repr: repr,
         }
+    }
+
+    pub fn walk(&mut self, direction: Direction) {
+        self.pos = self.pos.move_dir(direction);
     }
 
     pub fn pos(&self) -> &Point {
