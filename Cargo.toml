@@ -4,5 +4,9 @@ name = "rslike"
 version = "0.0.1"
 authors = ["Jonny Gilchrist <jonnygilchrist@gmail.com>"]
 
+[[bin]]
+name = "rslike"
+doc = false
+
 [dependencies.tcod]
 git = "https://github.com/tomassedovic/tcod-rs.git"
