@@ -24,6 +24,10 @@ impl Actor {
         &self.pos
     }
 
+    pub fn is_dead(&self) -> bool {
+        self.health <= 0
+    }
+
     pub fn hurt(&mut self, amount: int) {
         self.health -= amount;
     }
