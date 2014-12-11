@@ -13,4 +13,8 @@ impl Point {
         Point { x: 0, y: 0 }
     }
 
+    pub fn as_tuple(&self) -> (int, int) {
+        (self.x, self.y)
+    }
+
 }

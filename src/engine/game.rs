@@ -1,7 +1,7 @@
 use engine::World;
 
 pub struct Game {
-    world: World,
+    pub world: World,
 }
 
 impl Game {

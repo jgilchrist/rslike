@@ -20,6 +20,10 @@ impl Actor {
         }
     }
 
+    pub fn pos(&self) -> &Point {
+        &self.pos
+    }
+
     pub fn hurt(&mut self, amount: int) {
         self.health -= amount;
     }

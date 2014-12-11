@@ -40,7 +40,9 @@ impl GUI {
     pub fn render(&mut self) {
         self.clear();
 
-        self.console.put_char(40, 25, '@', BackgroundFlag::Set);
+        let (px, py) = self.game.world.player.pos().as_tuple();
+
+        self.console.put_char(px, py, '@', BackgroundFlag::Set);
 
         self.flush();
     }

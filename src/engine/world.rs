@@ -4,8 +4,8 @@ use engine::Actor;
 use util::Point;
 
 pub struct World {
-    player: Actor,
-    actors: Vec<Actor>,
+    pub player: Actor,
+    pub actors: Vec<Actor>,
 }
 
 impl World {
