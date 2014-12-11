@@ -36,7 +36,7 @@ impl Actor {
         self.health += amount;
     }
 
-    pub fn kill(&mut self, amount: int) {
+    pub fn kill(&mut self) {
         self.health = 0;
     }
 
