@@ -25,16 +25,18 @@ impl Point {
 
 }
 
+impl Copy for Point {}
+
 impl Add<Point, Point> for Point {
-    fn add(&self, other: &Point) -> Point {
-        let (ox, oy) = other.as_xy();
+    fn add(self, other: Point) -> Point {
+        let (ox, oy) : (int, int) = other.as_xy();
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
 
 impl Add<(int, int), Point> for Point {
-    fn add(&self, other: &(int, int)) -> Point {
-        let (ox, oy) = *other;
+    fn add(self, other: (int, int)) -> Point {
+        let (ox, oy) = other;
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
