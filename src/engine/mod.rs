@@ -1,3 +1,5 @@
+//! The roguelike's engine
+
 pub use self::actor::Actor;
 pub use self::game::Game;
 pub use self::map::Map;

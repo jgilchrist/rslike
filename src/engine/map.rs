@@ -5,6 +5,7 @@ use std::path::AsPath;
 use std::fs::File;
 use std::io::Read;
 
+/// A map.
 pub struct Map {
     pub tiles: Vec<Vec<Tile>>,
     pub size: Size,
@@ -12,6 +13,30 @@ pub struct Map {
 
 impl Map {
 
+    /// Creates a new map.
+    ///
+    /// This method takes a type which implements the `IntoMap` trait to create
+    /// the new map.
+    ///
+    /// # Examples
+    ///
+    /// From a 2D vector of Tiles:
+    ///
+    /// ```
+    /// use rslike::engine::Map;
+    ///
+    /// let tiles = vec![vec![]];
+    /// let map = Map::new(tiles);
+    /// ```
+    ///
+    /// From a String:
+    ///
+    /// ```
+    /// use rslike::engine::Map;
+    ///
+    /// let mapstr = "###\n# #\n###".to_string();
+    /// let map = Map::new(mapstr);
+    /// ```
     pub fn new<T>(maplike: T) -> Map where T: IntoMap {
         maplike.as_map().unwrap()
     }

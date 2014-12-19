@@ -1,3 +1,5 @@
+//! Various utilities
+
 pub mod units;
 
 pub trait FirstLast {
