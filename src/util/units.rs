@@ -1,10 +1,8 @@
-use std::fmt;
-
 pub trait XYPair {
     fn as_tuple(&self) -> (int, int);
 }
 
-#[deriving(Copy)]
+#[deriving(Show, Copy)]
 pub struct Point {
     pub x: int,
     pub y: int
@@ -37,12 +35,6 @@ impl Add<(int, int), Point> for Point {
     fn add(self, other: (int, int)) -> Point {
         let (ox, oy) = other;
         Point { x: self.x + ox, y: self.y + oy }
-    }
-}
-
-impl fmt::Show for Point {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Point({}, {})", self.x, self.y)
     }
 }
 
