@@ -28,8 +28,8 @@ impl Actor {
         self.pos = self.pos.move_dir(direction);
     }
 
-    pub fn pos(&self) -> &Point {
-        &self.pos
+    pub fn pos(&self) -> Point {
+        self.pos
     }
 
     pub fn is_dead(&self) -> bool {
