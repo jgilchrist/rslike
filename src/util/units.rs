@@ -4,6 +4,7 @@ pub trait XYPair {
     fn as_xy(&self) -> (int, int);
 }
 
+#[deriving(Copy)]
 pub struct Point {
     x: int,
     y: int
@@ -24,8 +25,6 @@ impl Point {
     }
 
 }
-
-impl Copy for Point {}
 
 impl Add<Point, Point> for Point {
     fn add(self, other: Point) -> Point {
