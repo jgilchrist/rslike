@@ -72,10 +72,10 @@ impl GUI {
     fn render(&mut self) {
         self.clear();
 
-        let (px, py) = self.game.world.player.pos().as_xy();
         let repr = self.game.world.player.repr();
+        let pos = self.game.world.player.pos();
 
-        self.console.put_char(px, py, repr, BackgroundFlag::Set);
+        self.console.put_char(pos.x, pos.y, repr, BackgroundFlag::Set);
 
         self.flush();
     }

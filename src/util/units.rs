@@ -1,13 +1,13 @@
 use std::fmt;
 
 pub trait XYPair {
-    fn as_xy(&self) -> (int, int);
+    fn as_tuple(&self) -> (int, int);
 }
 
 #[deriving(Copy)]
 pub struct Point {
-    x: int,
-    y: int
+    pub x: int,
+    pub y: int
 }
 
 impl Point {
@@ -21,14 +21,14 @@ impl Point {
     }
 
     pub fn move_dir(&self, dir: Direction) -> Point {
-        *self + dir.as_xy()
+        *self + dir.as_tuple()
     }
 
 }
 
 impl Add<Point, Point> for Point {
     fn add(self, other: Point) -> Point {
-        let (ox, oy) : (int, int) = other.as_xy();
+        let (ox, oy) = other.as_tuple();
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -47,7 +47,7 @@ impl fmt::Show for Point {
 }
 
 impl XYPair for Point {
-    fn as_xy(&self) -> (int, int) {
+    fn as_tuple(&self) -> (int, int) {
         (self.x, self.y)
     }
 }
@@ -60,7 +60,7 @@ pub enum Direction {
 }
 
 impl XYPair for Direction {
-    fn as_xy(&self) -> (int, int) {
+    fn as_tuple(&self) -> (int, int) {
         match *self {
             Direction::Up      => (  0, -1),
             Direction::Down    => (  0,  1),
