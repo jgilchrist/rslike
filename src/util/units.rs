@@ -1,5 +1,5 @@
-pub trait XYPair {
-    fn as_tuple(&self) -> (int, int);
+pub trait XYPair<T> {
+    fn as_tuple(&self) -> (T, T);
 }
 
 #[deriving(Show, Copy)]
@@ -38,7 +38,7 @@ impl Add<(int, int), Point> for Point {
     }
 }
 
-impl XYPair for Point {
+impl XYPair<int> for Point {
     fn as_tuple(&self) -> (int, int) {
         (self.x, self.y)
     }
@@ -51,7 +51,7 @@ pub enum Direction {
     Right,
 }
 
-impl XYPair for Direction {
+impl XYPair<int> for Direction {
     fn as_tuple(&self) -> (int, int) {
         match *self {
             Direction::Up      => (  0, -1),
