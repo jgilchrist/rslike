@@ -1,6 +1,4 @@
-pub trait AsTuple<T> {
-    fn as_tuple(&self) -> (T, T);
-}
+use util::units::{AsTuple, Direction};
 
 #[deriving(Show, Copy)]
 pub struct Point {
@@ -40,45 +38,6 @@ impl Add<(int, int), Point> for Point {
 
 impl AsTuple<int> for Point {
     fn as_tuple(&self) -> (int, int) {
-        (self.x, self.y)
-    }
-}
-
-#[deriving(Show, Copy)]
-pub enum Direction {
-    Up,
-    Down,
-    Left,
-    Right,
-}
-
-impl AsTuple<int> for Direction {
-    fn as_tuple(&self) -> (int, int) {
-        match *self {
-            Direction::Up      => (  0, -1),
-            Direction::Down    => (  0,  1),
-            Direction::Left    => ( -1,  0),
-            Direction::Right   => (  1,  0),
-        }
-    }
-}
-
-#[deriving(Show, Copy)]
-pub struct Size {
-    x: uint,
-    y: uint
-}
-
-impl Size {
-
-    pub fn new(x: uint, y: uint) -> Size {
-        Size { x: x, y: y }
-    }
-
-}
-
-impl AsTuple<uint> for Size {
-    fn as_tuple(&self) -> (uint, uint) {
         (self.x, self.y)
     }
 }
