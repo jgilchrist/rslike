@@ -1,3 +1,5 @@
+#![feature(globs)]
+
 extern crate tcod;
 
 pub mod engine;
