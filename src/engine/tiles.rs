@@ -9,15 +9,15 @@ pub enum Tile {
 
 impl Tile {
 
-    fn walkable(&self) -> bool {
+    pub fn walkable(&self) -> bool {
         match *self {
-            Tile::Empty => false,
+            Tile::Empty => true,
             Tile::Wall => false,
             Tile::Floor => true,
         }
     }
 
-    fn repr(&self) -> char {
+    pub fn repr(&self) -> char {
         match *self {
             Tile::Empty => ' ',
             Tile::Wall => '#',
