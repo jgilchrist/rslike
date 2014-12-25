@@ -5,7 +5,7 @@ use std::iter::repeat;
 
 pub struct Map {
     tiles: Vec<Vec<Tile>>,
-    size: Size,
+    pub size: Size,
 }
 
 impl Map {
@@ -21,10 +21,6 @@ impl Map {
             tiles: tiles,
             size: size
         }
-    }
-
-    pub fn size(&self) -> Size {
-        self.size
     }
 
     pub fn at(&self, loc: Point) -> Tile {

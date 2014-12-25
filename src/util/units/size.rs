@@ -2,8 +2,8 @@ use util::units::AsTuple;
 
 #[deriving(Show, Copy)]
 pub struct Size {
-    x: uint,
-    y: uint
+    pub x: uint,
+    pub y: uint
 }
 
 impl Size {

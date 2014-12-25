@@ -72,8 +72,8 @@ impl GUI {
     fn render(&mut self) {
         self.clear();
 
-        let repr = self.game.world.player.repr();
-        let pos = self.game.world.player.pos();
+        let repr = self.game.world.player.repr;
+        let pos = self.game.world.player.pos;
 
         self.console.put_char(pos.x, pos.y, repr, BackgroundFlag::Set);
 

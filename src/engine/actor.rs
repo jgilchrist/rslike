@@ -1,11 +1,11 @@
 use util::units::{Direction, Point};
 
 pub struct Actor {
-    name: String,
-    pos: Point,
-    health: int,
-    max_health: int,
-    repr: char,
+    pub name: String,
+    pub pos: Point,
+    pub health: int,
+    pub max_health: int,
+    pub repr: char,
 }
 
 impl Actor {
@@ -20,16 +20,8 @@ impl Actor {
         }
     }
 
-    pub fn repr(&self) -> char {
-        self.repr
-    }
-
     pub fn walk(&mut self, direction: Direction) {
         self.pos = self.pos.move_dir(direction);
-    }
-
-    pub fn pos(&self) -> Point {
-        self.pos
     }
 
     pub fn is_dead(&self) -> bool {
