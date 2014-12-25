@@ -1,7 +1,6 @@
 use engine::Tile;
-use util::units::{AsTuple, Size, Point};
-
-use std::iter::repeat;
+use engine::builders::MapBuilder;
+use util::units::{Point, Size};
 
 pub struct Map {
     tiles: Vec<Vec<Tile>>,
@@ -10,17 +9,18 @@ pub struct Map {
 
 impl Map {
 
-    pub fn new(size: Size) -> Map {
-
-        let (width, height) = size.as_tuple();
-
-        // TODO: use range syntax
-        let tiles: Vec<Vec<Tile>> = range(0, height).map(|_| repeat(Tile::Empty).take(width).collect()).collect();
+    pub fn new(tiles: Vec<Vec<Tile>>) -> Map {
+        // TODO: check dimensions are the same
+        let size = Size::new(tiles.len(), tiles[0].len());
 
         Map {
             tiles: tiles,
-            size: size
+            size: size,
         }
+    }
+
+    pub fn from_builder<T>(builder: T) -> Map where T: MapBuilder {
+        builder.build()
     }
 
     pub fn at(&self, loc: Point) -> Tile {
