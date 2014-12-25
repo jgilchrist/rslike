@@ -16,7 +16,7 @@ impl World {
         World {
             player: Actor::new("Player".to_string(), Point::new(1, 1), 100, '@'),
             actors: Vec::new(),
-            map: Map::from_builder(MapFromString::new("")),
+            map: Map::from_builder(MapFromString::new("#####\n#   #\n#   #\n#   #\n#####")),
         }
     }
 
