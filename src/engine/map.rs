@@ -1,5 +1,5 @@
 use engine::Tile;
-use util::units::{Size, AsTuple};
+use util::units::{AsTuple, Size, Point};
 
 use std::iter::repeat;
 
@@ -21,6 +21,18 @@ impl Map {
             tiles: tiles,
             size: size
         }
+    }
+
+    pub fn size(&self) -> Size {
+        self.size
+    }
+
+    pub fn at(&self, loc: Point) -> Tile {
+        self.tiles[loc.y as uint][loc.x as uint]
+    }
+
+    pub fn set_tile(&mut self, loc: Point, tile: Tile) {
+        self.tiles[loc.y as uint][loc.x as uint] = tile;
     }
 
 }
