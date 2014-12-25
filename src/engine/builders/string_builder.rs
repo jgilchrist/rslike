@@ -1,5 +1,5 @@
 use engine::{Map, Tile};
-use engine::builders::MapBuilder;
+use engine::builders::{MapBuilder, MapBuildResult};
 use util::units::{AsTuple, Size};
 
 use std::iter::repeat;
@@ -17,10 +17,14 @@ impl MapFromString {
 }
 
 impl MapBuilder for MapFromString {
-    fn build(&self) -> Map {
+    fn build(&self) -> MapBuildResult {
+        let lines : Vec<_> = self.s.split('\n').collect();
+
+        println!("{}", lines);
+
         let size = Size::new(10, 10);
         let (width, height) = size.as_tuple();
         let tiles: Vec<Vec<Tile>> = range(0, height).map(|_| repeat(Tile::Empty).take(width).collect()).collect();
-        Map::new(tiles)
+        Ok(Map::new(tiles))
     }
 }

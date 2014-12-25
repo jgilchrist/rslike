@@ -20,7 +20,13 @@ impl Map {
     }
 
     pub fn from_builder<T>(builder: T) -> Map where T: MapBuilder {
-        builder.build()
+        let result = builder.build();
+        match result {
+            Ok(map) => map,
+            Err(err) => {
+                panic!(err.desc);
+            }
+        }
     }
 
     pub fn at(&self, loc: Point) -> Tile {
