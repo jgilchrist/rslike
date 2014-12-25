@@ -1,8 +1,8 @@
-pub use engine::actor::Actor;
-pub use engine::game::Game;
-pub use engine::tiles::Tile;
-pub use engine::map::Map;
-pub use engine::world::World;
+pub use self::actor::Actor;
+pub use self::game::Game;
+pub use self::tiles::Tile;
+pub use self::map::Map;
+pub use self::world::World;
 
 mod actor;
 mod game;
