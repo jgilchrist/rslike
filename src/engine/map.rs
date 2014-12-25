@@ -24,7 +24,7 @@ impl Map {
         match result {
             Ok(map) => map,
             Err(err) => {
-                panic!(err.desc);
+                panic!(err.msg);
             }
         }
     }
