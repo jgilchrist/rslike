@@ -3,8 +3,10 @@ use engine::Map;
 use std::fmt;
 
 pub use self::string_builder::MapFromString;
+pub use self::file_builder::MapFromFile;
 
 mod string_builder;
+mod file_builder;
 
 pub trait MapBuilder {
     fn build(&self) -> Result<Map, MapBuildError>;
