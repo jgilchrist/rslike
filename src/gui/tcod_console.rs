@@ -1,4 +1,4 @@
-use gui::{Console, Key};
+use gui::{Console, Color, Key};
 use util::units::{AsTuple, Point, Size};
 
 use tcod;
@@ -26,8 +26,12 @@ impl TCODConsole {
 }
 
 impl Console for TCODConsole {
-    fn put(&mut self, pos: Point, c: char) {
-        self.console.put_char(pos.x, pos.y, c, tcod::BackgroundFlag::Set);
+    fn put_plain(&mut self, pos: Point, c: char) {
+        self.console.put_char(pos.x, pos.y, c, tcod::BackgroundFlag::None);
+    }
+
+    fn put(&mut self, pos: Point, c: char, f_color: Color, b_color: Color) {
+        self.console.put_char_ex(pos.x, pos.y, c, f_color, b_color);
     }
 
     fn clear(&mut self) {

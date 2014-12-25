@@ -1,7 +1,11 @@
+use tcod;
 use util::units::{Point, Size};
+pub use tcod::colors as Colors;
 
 pub trait Console {
-    fn put(&mut self, Point, char);
+    fn put_plain(&mut self, Point, char);
+    fn put(&mut self, Point, char, Color, Color);
+
     fn clear(&mut self);
     fn flush(&mut self);
 
@@ -19,3 +23,5 @@ pub enum Key {
     Right,
     Escape,
 }
+
+pub type Color = tcod::Color;

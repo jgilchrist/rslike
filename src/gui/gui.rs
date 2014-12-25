@@ -1,5 +1,5 @@
 use engine::Game;
-use gui::{Console, Key};
+use gui::{Console, Colors, Key};
 use util::units::{Direction, Point, Size};
 
 #[deriving(PartialEq)]
@@ -65,7 +65,7 @@ impl<'a> GUI<'a> {
         let repr = self.game.world.player.repr;
         let pos = self.game.world.player.pos;
 
-        self.console.put(pos, repr);
+        self.console.put_plain(pos, repr);
 
         self.console.flush();
     }
@@ -75,8 +75,7 @@ impl<'a> GUI<'a> {
 
         for (y, line) in map.tiles.iter().enumerate() {
             for (x, cell) in line.iter().enumerate() {
-                // self.console.put_char(x as int, y as int, cell.repr(), BackgroundFlag::Set);
-                self.console.put(Point::new(x as int, y as int), cell.repr());
+                self.console.put(Point::new(x as int, y as int), ' ', Colors::white, cell.b_color());
             }
         }
     }

@@ -1,3 +1,5 @@
+use gui::{Color, Colors};
+
 use std::fmt;
 
 #[deriving(Clone, Copy)]
@@ -22,6 +24,14 @@ impl Tile {
             Tile::Empty => ' ',
             Tile::Wall => '#',
             Tile::Floor => '.',
+        }
+    }
+
+    pub fn b_color(&self) -> Color {
+        match *self {
+            Tile::Empty => Colors::black,
+            Tile::Wall => Colors::darker_grey,
+            Tile::Floor => Colors::darkest_sepia,
         }
     }
 
