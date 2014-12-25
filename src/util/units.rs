@@ -44,6 +44,7 @@ impl XYPair<int> for Point {
     }
 }
 
+#[deriving(Show, Copy)]
 pub enum Direction {
     Up,
     Down,
@@ -62,6 +63,7 @@ impl XYPair<int> for Direction {
     }
 }
 
+#[deriving(Show, Copy)]
 pub struct Size {
     x: uint,
     y: uint

@@ -1,5 +1,6 @@
 use std::fmt;
 
+#[deriving(Clone, Copy)]
 pub enum Tile {
     Empty,
     Wall,
