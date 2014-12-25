@@ -33,11 +33,7 @@ impl MapBuilder for MapFromString {
 
         if !lines.iter().all(|x| x.len() == lines[0].len()) { return Err(MapBuildError::new("Different length lines")) };
 
-        println!("{}", lines);
-
         let tiles: Vec<Vec<Tile>> = lines.iter().map(|&line| self.build_line(line)).collect();
-
-        println!("{}", tiles);
 
         Ok(Map::new(tiles))
     }
