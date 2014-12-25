@@ -72,12 +72,24 @@ impl GUI {
     fn render(&mut self) {
         self.clear();
 
+        self.render_map();
+
         let repr = self.game.world.player.repr;
         let pos = self.game.world.player.pos;
 
         self.console.put_char(pos.x, pos.y, repr, BackgroundFlag::Set);
 
         self.flush();
+    }
+
+    fn render_map(&mut self) {
+        let map = &(self.game.world.map);
+
+        for (y, line) in map.tiles.iter().enumerate() {
+            for (x, cell) in line.iter().enumerate() {
+                self.console.put_char(x as int, y as int, cell.repr(), BackgroundFlag::Set);
+            }
+        }
     }
 
     pub fn clear(&mut self) {

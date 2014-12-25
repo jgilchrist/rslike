@@ -3,7 +3,7 @@ use engine::builders::MapBuilder;
 use util::units::{Point, Size};
 
 pub struct Map {
-    tiles: Vec<Vec<Tile>>,
+    pub tiles: Vec<Vec<Tile>>,
     pub size: Size,
 }
 
