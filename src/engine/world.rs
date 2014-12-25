@@ -1,11 +1,12 @@
 use std::vec::Vec;
 
-use engine::Actor;
-use util::units::{Direction, Point};
+use engine::{Actor, Map};
+use util::units::{Direction, Point, Size};
 
 pub struct World {
     pub player: Actor,
     pub actors: Vec<Actor>,
+    pub map: Map,
 }
 
 impl World {
@@ -14,6 +15,7 @@ impl World {
         World {
             player: Actor::new("Player".to_string(), Point::new(1, 1), 100, '@'),
             actors: Vec::new(),
+            map: Map::new(Size::new(10, 10)),
         }
     }
 

@@ -1,19 +1,33 @@
+use std::fmt;
+
 pub enum Tile {
-    EmptyTile,
-    WallTile,
-    FloorTile,
+    Empty,
+    Wall,
+    Floor,
 }
 
-pub trait Walkable {
-    fn walkable(&self) -> bool;
-}
+impl Tile {
 
-impl Walkable for Tile {
     fn walkable(&self) -> bool {
         match *self {
-            Tile::EmptyTile => false,
-            Tile::WallTile => false,
-            Tile::FloorTile => true,
+            Tile::Empty => false,
+            Tile::Wall => false,
+            Tile::Floor => true,
         }
+    }
+
+    fn repr(&self) -> char {
+        match *self {
+            Tile::Empty => ' ',
+            Tile::Wall => '#',
+            Tile::Floor => '.',
+        }
+    }
+
+}
+
+impl fmt::Show for Tile {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.repr())
     }
 }
