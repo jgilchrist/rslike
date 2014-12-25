@@ -3,7 +3,7 @@ use tcod::{BackgroundFlag, Console, Key, KeyCode};
 use tcod::{KEY_PRESSED, FONT_LAYOUT_ASCII_INROW, FONT_TYPE_GREYSCALE};
 
 use engine::Game;
-use util::units::Direction;
+use util::units::{Direction, Size};
 
 #[deriving(PartialEq)]
 pub enum State {
@@ -12,25 +12,25 @@ pub enum State {
 }
 
 pub struct GUI {
-    game: Game,
-    width: int,
-    height: int,
+    pub size: Size,
     pub console: Console,
+    game: Game,
     state: State,
 }
 
 impl GUI {
     pub fn new(game: Game) -> GUI {
-        let (width, height) = (100, 50);
+        let width = 100;
+        let height = 50;
+        let size = Size::new(width, height);
 
         tcod::system::set_fps(60);
         Console::set_custom_font(Path::new("/home/jonny/code/rslike/assets/fonts/terminal12x12_gs_ro.png"), FONT_LAYOUT_ASCII_INROW | FONT_TYPE_GREYSCALE, 0, 0);
-        let console = Console::init_root(width, height, "Libtcod Rust Tutorial", false);
+        let console = Console::init_root(width as int, height as int, "Libtcod Rust Tutorial", false);
 
         GUI {
             game: game,
-            width: width,
-            height: height,
+            size: size,
             console: console,
             state: State::Running,
         }
