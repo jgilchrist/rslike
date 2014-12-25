@@ -1,6 +1,8 @@
 use engine::Tile;
 use util::units::{Size, XYPair};
 
+use std::iter::repeat;
+
 pub struct Map {
     tiles: Vec<Vec<Tile>>,
     size: Size,
@@ -13,7 +15,7 @@ impl Map {
         let (width, height) = size.as_tuple();
 
         // TODO: use range syntax
-        let tiles: Vec<Vec<Tile>> = range(0, height).map(|h| range(0, width).map(|w| Tile::Empty).collect()).collect();
+        let tiles: Vec<Vec<Tile>> = range(0, height).map(|_| repeat(Tile::Empty).take(width).collect()).collect();
 
         Map {
             tiles: tiles,
