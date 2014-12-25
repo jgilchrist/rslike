@@ -14,7 +14,7 @@ impl World {
 
     pub fn new() -> World {
         World {
-            player: Actor::new("Player".to_string(), Point::new(10, 10), 100, '@'),
+            player: Actor::new("Player", Point::new(10, 10), 100, '@'),
             actors: Vec::new(),
             map: Map::from_builder(MapFromFile::new(Path::new("/home/jonny/code/rslike/assets/maps/test.map"))),
         }

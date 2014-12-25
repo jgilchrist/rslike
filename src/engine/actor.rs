@@ -10,9 +10,9 @@ pub struct Actor {
 
 impl Actor {
 
-    pub fn new(name: String, pos: Point, max_health: int, repr: char) -> Actor {
+    pub fn new(name: &'static str, pos: Point, max_health: int, repr: char) -> Actor {
         Actor {
-            name: name,
+            name: name.to_string(),
             pos: pos,
             health: max_health,
             max_health: max_health,
