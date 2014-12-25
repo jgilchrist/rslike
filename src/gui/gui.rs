@@ -3,7 +3,7 @@ use tcod::{BackgroundFlag, Console, Key, KeyCode};
 use tcod::{KEY_PRESSED, FONT_LAYOUT_ASCII_INROW, FONT_TYPE_GREYSCALE};
 
 use engine::Game;
-use util::units::{Direction, XYPair};
+use util::units::Direction;
 
 #[deriving(PartialEq)]
 pub enum State {
