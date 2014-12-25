@@ -7,6 +7,8 @@ authors = ["Jonny Gilchrist <jonnygilchrist@gmail.com>"]
 [[bin]]
 name = "rslike"
 doc = false
+test = false
+doctest = false
 
 [dependencies.tcod]
 git = "https://github.com/tomassedovic/tcod-rs.git"
