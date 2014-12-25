@@ -1,6 +1,6 @@
 use util::units::AsTuple;
 
-#[deriving(Show, Copy)]
+#[deriving(Copy, PartialEq, Show)]
 pub enum Direction {
     Up,
     Down,

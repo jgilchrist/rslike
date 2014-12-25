@@ -1,6 +1,6 @@
 use util::units::{AsTuple, Direction};
 
-#[deriving(Show, Copy)]
+#[deriving(Copy, PartialEq, Show)]
 pub struct Point {
     pub x: int,
     pub y: int
