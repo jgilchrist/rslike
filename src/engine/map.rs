@@ -1,5 +1,5 @@
 use engine::Tile;
-use util::units::{Size, XYPair};
+use util::units::{Size, AsTuple};
 
 use std::iter::repeat;
 
