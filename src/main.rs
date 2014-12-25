@@ -7,7 +7,7 @@ use rslike::util::units::Size;
 
 fn main() {
     let game = Game::new();
-    let mut tcod_console = TCODConsole::new(Size::new(100, 50));
+    let mut tcod_console = TCODConsole::new(Size::new(114, 71));
     let mut gui = GUI::new(game, &mut tcod_console);
 
     gui.run();
