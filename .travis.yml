@@ -5,3 +5,8 @@ before_install:
 
 install:
     - sudo apt-get install gcc g++ make upx electric-fence libsdl1.2-dev mercurial
+
+branches:
+    only:
+        - master
+        - dev
