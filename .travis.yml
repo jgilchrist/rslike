@@ -5,3 +5,16 @@ before_install:
 
 install:
     - sudo apt-get install gcc g++ make upx electric-fence libsdl1.2-dev mercurial
+
+after_success: |
+  [ $TRAVIS_BRANCH = dev ] &&
+  [ $TRAVIS_PULL_REQUEST = false ] &&
+  cargo doc &&
+  echo '<meta http-equiv=refresh content="1;url=rslike/index.html">' > target/doc/index.html &&
+  sudo pip install ghp-import &&
+  ghp-import -n target/doc &&
+  git push -fq https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+
+env:
+  global:
+    secure: tIpj3IG54S6H647yX58npmeGQy1/SC5/oiyZVcGdbUxNqd3Wja2EptkcgYAIMdfqFniMhuo8GDUavFnw4pCJH/l2/aIUb27igVS6ZLd+htVk3cch0Mc8qw2lq2mjHkL53y7rD2cILkoQuX8HvE6b6rz1g/A/gmmlJ9S1yLWfuRE=
