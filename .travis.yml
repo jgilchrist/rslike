@@ -10,7 +10,7 @@ after_success: |
   [ $TRAVIS_BRANCH = dev ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   cargo doc &&
-  echo '<meta http-equiv=refresh content="1;url=rslike/index.html">' > target/doc/index.html &&
+  echo '<meta http-equiv=refresh content="0;url=rslike/index.html">' > target/doc/index.html &&
   git config --global user.email "travis@travis-ci.org" &&
   git config --global user.name "travis-ci" &&
   sudo pip install ghp-import &&
