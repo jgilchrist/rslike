@@ -2,7 +2,7 @@ use gui::{Color, Colors};
 
 use std::fmt;
 
-#[deriving(Clone, Copy)]
+#[derive(Clone, Copy)]
 pub enum Tile {
     Empty,
     Wall,

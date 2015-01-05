@@ -12,7 +12,7 @@ pub trait MapBuilder {
     fn build(&self) -> Result<Map, MapBuildError>;
 }
 
-#[deriving(Copy)]
+#[derive(Copy)]
 pub struct MapBuildError {
     pub msg: &'static str,
 }

@@ -1,6 +1,8 @@
 use util::units::{AsTuple, Direction};
 
-#[deriving(Copy, PartialEq, Show)]
+use std::ops::Add;
+
+#[derive(Copy, PartialEq, Show)]
 pub struct Point {
     pub x: int,
     pub y: int
@@ -22,14 +24,18 @@ impl Point {
 
 }
 
-impl Add<Point, Point> for Point {
+impl Add for Point {
+    type Output = Point;
+
     fn add(self, other: Point) -> Point {
         let (ox, oy) = other.as_tuple();
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
 
-impl Add<(int, int), Point> for Point {
+impl Add<(int, int)> for Point {
+    type Output = Point;
+
     fn add(self, other: (int, int)) -> Point {
         let (ox, oy) = other;
         Point { x: self.x + ox, y: self.y + oy }
