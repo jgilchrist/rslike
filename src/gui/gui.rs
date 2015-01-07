@@ -2,7 +2,7 @@ use engine::Game;
 use gui::{Console, Colors, Key};
 use util::units::{Direction, Point, Size};
 
-#[deriving(PartialEq)]
+#[derive(PartialEq)]
 pub enum State {
     Running,
     Exited
