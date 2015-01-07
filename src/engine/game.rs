@@ -14,7 +14,7 @@ impl Game {
     }
 
     pub fn step(&mut self) {
-        
+
     }
 
     pub fn walk(&mut self, direction: Direction) {

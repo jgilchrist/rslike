@@ -25,5 +25,5 @@ impl World {
 
         self.player.walk(direction);
     }
-    
+
 }
