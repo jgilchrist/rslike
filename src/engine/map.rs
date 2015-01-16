@@ -1,5 +1,4 @@
-use engine::Tile;
-use engine::builders::MapBuilder;
+use engine::{IntoMap, Tile};
 use util::units::{Point, Size};
 
 pub struct Map {
@@ -9,24 +8,17 @@ pub struct Map {
 
 impl Map {
 
-    pub fn new(tiles: Vec<Vec<Tile>>) -> Map {
-        // TODO: check dimensions are the same
-        let size = Size::new(tiles.len() as i32, tiles[0].len() as i32);
+    pub fn new<T>(mappish: T) -> Map where T: IntoMap {
+        let result = mappish.into_map();
 
-        Map {
-            tiles: tiles,
-            size: size,
-        }
-    }
-
-    pub fn from_builder<T>(builder: T) -> Map where T: MapBuilder {
-        let result = builder.build();
-        match result {
+        let map = match result {
             Ok(map) => map,
-            Err(err) => {
-                panic!(err.msg);
+            Err(msg) => {
+                panic!(msg);
             }
-        }
+        };
+
+        map
     }
 
     pub fn at(&self, loc: Point) -> Tile {
