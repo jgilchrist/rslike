@@ -2,19 +2,19 @@
 name = "rslike"
 version = "0.0.1"
 dependencies = [
- "tcod 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tcod 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "tcod"
-version = "0.3.2"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "tcod-sys 1.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tcod-sys 2.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "tcod-sys"
-version = "1.5.2"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
