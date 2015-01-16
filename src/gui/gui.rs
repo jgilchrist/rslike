@@ -75,7 +75,7 @@ impl<'a> GUI<'a> {
 
         for (y, line) in map.tiles.iter().enumerate() {
             for (x, cell) in line.iter().enumerate() {
-                self.console.put(Point::new(x as int, y as int), ' ', Colors::white, cell.b_color());
+                self.console.put(Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
     }

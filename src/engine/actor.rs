@@ -3,14 +3,14 @@ use util::units::{Direction, Point};
 pub struct Actor {
     pub name: String,
     pub pos: Point,
-    pub health: int,
-    pub max_health: int,
+    pub health: i32,
+    pub max_health: i32,
     pub repr: char,
 }
 
 impl Actor {
 
-    pub fn new(name: &'static str, pos: Point, max_health: int, repr: char) -> Actor {
+    pub fn new(name: &'static str, pos: Point, max_health: i32, repr: char) -> Actor {
         Actor {
             name: name.to_string(),
             pos: pos,
@@ -28,11 +28,11 @@ impl Actor {
         self.health <= 0
     }
 
-    pub fn hurt(&mut self, amount: int) {
+    pub fn hurt(&mut self, amount: i32) {
         self.health -= amount;
     }
 
-    pub fn heal(&mut self, amount: int) {
+    pub fn heal(&mut self, amount: i32) {
         self.health += amount;
     }
 

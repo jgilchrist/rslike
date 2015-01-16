@@ -15,7 +15,7 @@ impl TCODConsole {
         tcod::Console::set_custom_font(Path::new("/home/jonny/code/rslike/assets/fonts/terminal12x12_gs_ro.png"), tcod::FONT_LAYOUT_ASCII_INROW | tcod::FONT_TYPE_GREYSCALE, 0, 0);
 
         let (width, height) = size.as_tuple();
-        let console = tcod::Console::init_root(width as int, height as int, "rslike", false);
+        let console = tcod::Console::init_root(width, height, "rslike", false);
 
         TCODConsole {
             console: console,

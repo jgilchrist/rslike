@@ -4,13 +4,13 @@ use std::ops::Add;
 
 #[derive(Copy, PartialEq, Show)]
 pub struct Point {
-    pub x: int,
-    pub y: int
+    pub x: i32,
+    pub y: i32
 }
 
 impl Point {
 
-    pub fn new(x: int, y: int) -> Point {
+    pub fn new(x: i32, y: i32) -> Point {
         Point { x: x, y: y }
     }
 
@@ -33,17 +33,17 @@ impl Add for Point {
     }
 }
 
-impl Add<(int, int)> for Point {
+impl Add<(i32, i32)> for Point {
     type Output = Point;
 
-    fn add(self, other: (int, int)) -> Point {
+    fn add(self, other: (i32, i32)) -> Point {
         let (ox, oy) = other;
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
 
-impl AsTuple<int> for Point {
-    fn as_tuple(&self) -> (int, int) {
+impl AsTuple<i32> for Point {
+    fn as_tuple(&self) -> (i32, i32) {
         (self.x, self.y)
     }
 }

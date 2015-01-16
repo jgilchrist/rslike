@@ -11,7 +11,7 @@ impl Map {
 
     pub fn new(tiles: Vec<Vec<Tile>>) -> Map {
         // TODO: check dimensions are the same
-        let size = Size::new(tiles.len(), tiles[0].len());
+        let size = Size::new(tiles.len() as i32, tiles[0].len() as i32);
 
         Map {
             tiles: tiles,
@@ -30,7 +30,7 @@ impl Map {
     }
 
     pub fn at(&self, loc: Point) -> Tile {
-        self.tiles[loc.y as uint][loc.x as uint]
+        self.tiles[loc.y as usize][loc.x as usize]
     }
 
     pub fn is_walkable(&self, loc: Point) -> bool {
@@ -38,7 +38,7 @@ impl Map {
     }
 
     pub fn set_tile(&mut self, loc: Point, tile: Tile) {
-        self.tiles[loc.y as uint][loc.x as uint] = tile;
+        self.tiles[loc.y as usize][loc.x as usize] = tile;
     }
 
 }

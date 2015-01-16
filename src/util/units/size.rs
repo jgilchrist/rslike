@@ -2,20 +2,20 @@ use util::units::AsTuple;
 
 #[derive(Copy, PartialEq, Show)]
 pub struct Size {
-    pub x: uint,
-    pub y: uint
+    pub x: i32,
+    pub y: i32
 }
 
 impl Size {
 
-    pub fn new(x: uint, y: uint) -> Size {
+    pub fn new(x: i32, y: i32) -> Size {
         Size { x: x, y: y }
     }
 
 }
 
-impl AsTuple<uint> for Size {
-    fn as_tuple(&self) -> (uint, uint) {
+impl AsTuple<i32> for Size {
+    fn as_tuple(&self) -> (i32, i32) {
         (self.x, self.y)
     }
 }
