@@ -1,3 +1,5 @@
+#![allow(unstable)]
+
 extern crate tcod;
 
 pub mod engine;
