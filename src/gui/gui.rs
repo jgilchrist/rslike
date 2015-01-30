@@ -38,16 +38,16 @@ impl GUI {
         if let Some(key) = self.console.check_for_keypress() {
             match key {
                 Key::Up => {
-                    self.game.walk(Direction::Up);
+                    self.game.world.walk(Direction::Up);
                 },
                 Key::Down => {
-                    self.game.walk(Direction::Down);
+                    self.game.world.walk(Direction::Down);
                 },
                 Key::Left => {
-                    self.game.walk(Direction::Left);
+                    self.game.world.walk(Direction::Left);
                 },
                 Key::Right => {
-                    self.game.walk(Direction::Right);
+                    self.game.world.walk(Direction::Right);
                 },
                 Key::Escape => {
                     self.state = State::Exited;
