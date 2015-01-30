@@ -8,14 +8,14 @@ pub enum State {
     Exited
 }
 
-pub struct GUI<'a> {
-    pub console: &'a mut (Console + 'a),
+pub struct GUI {
+    pub console: Console,
     game: Game,
     state: State,
 }
 
-impl<'a> GUI<'a> {
-    pub fn new<T>(game: Game, console: &'a mut T) -> GUI where T: Console {
+impl GUI {
+    pub fn new(game: Game, console: Console) -> GUI {
         GUI {
             game: game,
             console: console,

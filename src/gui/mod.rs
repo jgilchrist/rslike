@@ -1,8 +1,7 @@
+pub use self::colors::{Color, Colors};
+pub use self::console::{Console, Key};
 pub use self::gui::GUI;
-pub use self::console::{Console, Color, Colors, Key};
-pub use self::tcod_console::TCODConsole;
 
-mod gui;
+mod colors;
 mod console;
-
-mod tcod_console;
+mod gui;
