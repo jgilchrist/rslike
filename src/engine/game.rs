@@ -1,5 +1,5 @@
 use engine::World;
-use util::units::{Direction};
+use util::units::Direction;
 
 pub struct Game {
     pub world: World,

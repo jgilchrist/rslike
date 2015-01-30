@@ -1,5 +1,6 @@
-use tcod;
 use util::units::{Point, Size};
+
+use tcod;
 pub use tcod::colors as Colors;
 
 pub trait Console {

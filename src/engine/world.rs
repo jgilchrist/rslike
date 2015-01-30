@@ -1,5 +1,3 @@
-use std::vec::Vec;
-
 use engine::{Actor, Map};
 use util::units::{Direction, Point};
 

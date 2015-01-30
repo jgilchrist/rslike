@@ -1,5 +1,5 @@
 use engine::{Tile, Map};
-use util::units::{Size};
+use util::units::Size;
 
 use std::old_io;
 
