@@ -2,7 +2,7 @@ use util::units::{AsTuple, Direction};
 
 use std::ops::Add;
 
-#[derive(Copy, PartialEq, Show)]
+#[derive(Copy, Debug, PartialEq)]
 pub struct Point {
     pub x: i32,
     pub y: i32

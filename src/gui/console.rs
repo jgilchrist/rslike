@@ -15,7 +15,7 @@ pub trait Console {
     fn window_closed(&self) -> bool;
 }
 
-#[derive(Copy, PartialEq, Show)]
+#[derive(Copy, Debug, PartialEq)]
 pub enum Key {
     Up,
     Down,

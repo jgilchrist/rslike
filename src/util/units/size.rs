@@ -1,6 +1,6 @@
 use util::units::AsTuple;
 
-#[derive(Copy, PartialEq, Show)]
+#[derive(Copy, Debug, PartialEq)]
 pub struct Size {
     pub x: i32,
     pub y: i32
