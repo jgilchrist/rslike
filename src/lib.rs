@@ -1,4 +1,4 @@
-#![allow(unstable)]
+#![feature(core, collections, io, path)]
 
 extern crate tcod;
 
