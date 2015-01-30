@@ -1,7 +1,7 @@
 use engine::{Tile, Map};
 use util::units::{Size};
 
-use std::{old_io, fmt};
+use std::old_io;
 
 pub trait IntoMap {
     fn into_map(self) -> MapBuildResult;
