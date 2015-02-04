@@ -1,4 +1,4 @@
-#![feature(core, collections, io, path)]
+#![feature(core, io, path)]
 
 extern crate tcod;
 
