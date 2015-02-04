@@ -1,6 +1,7 @@
 use engine::Game;
-use gui::{Console, Colors, Key};
-use util::units::{Direction, Point, Size};
+use gui::Console;
+use gui::screens;
+use util::units::Size;
 
 #[derive(PartialEq)]
 pub enum State {
@@ -10,8 +11,21 @@ pub enum State {
 
 pub struct GUI {
     pub console: Console,
+    pub current_screen: Box<Screen + 'static>,
     game: Game,
     state: State,
+}
+
+pub trait Screen {
+    fn input(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
+    fn update(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
+    fn render(&self, &mut Game, &mut Console);
+}
+
+pub enum ScreenChange {
+    AddScreen(Box<Screen + 'static>),
+    RemoveScreen,
+    ExitGame,
 }
 
 impl GUI {
@@ -19,6 +33,7 @@ impl GUI {
         GUI {
             game: game,
             console: console,
+            current_screen: screens::GameScreen::new(),
             state: State::Running,
         }
     }
@@ -30,54 +45,25 @@ impl GUI {
     pub fn run(&mut self) {
         while !self.console.window_closed() && !self.exited() {
             self.render();
+            self.update();
             self.handle_input();
         }
     }
 
     fn handle_input(&mut self) {
-        if let Some(key) = self.console.check_for_keypress() {
-            match key {
-                Key::Up => {
-                    self.game.world.walk(Direction::Up);
-                },
-                Key::Down => {
-                    self.game.world.walk(Direction::Down);
-                },
-                Key::Left => {
-                    self.game.world.walk(Direction::Left);
-                },
-                Key::Right => {
-                    self.game.world.walk(Direction::Right);
-                },
-                Key::Escape => {
-                    self.state = State::Exited;
-                },
-            }
+        if let Some(ScreenChange::ExitGame) = self.current_screen.input(&mut self.game, &mut self.console) {
+            self.state = State::Exited;
         }
+    }
 
+    fn update(&mut self) {
+        self.current_screen.update(&mut self.game, &mut self.console);
     }
 
     fn render(&mut self) {
         self.console.clear();
-
-        self.render_map();
-
-        let repr = self.game.world.player.repr;
-        let pos = self.game.world.player.pos;
-
-        self.console.put_plain(pos, repr);
-
+        self.current_screen.render(&mut self.game, &mut self.console);
         self.console.flush();
-    }
-
-    fn render_map(&mut self) {
-        let map = &(self.game.world.map);
-
-        for (y, line) in map.tiles.iter().enumerate() {
-            for (x, cell) in line.iter().enumerate() {
-                self.console.put(Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
-            }
-        }
     }
 
     pub fn exited(&self) -> bool {
