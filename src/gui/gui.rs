@@ -33,7 +33,7 @@ impl GUI {
         GUI {
             game: game,
             console: console,
-            screens: vec!(screens::GameScreen::new()),
+            screens: vec!(screens::MenuScreen::new()),
             state: State::Running,
         }
     }
