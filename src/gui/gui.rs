@@ -11,7 +11,7 @@ pub enum State {
 
 pub struct GUI {
     pub console: Console,
-    pub current_screen: Box<Screen + 'static>,
+    pub screens: Vec<Box<Screen + 'static>>,
     game: Game,
     state: State,
 }
@@ -33,7 +33,7 @@ impl GUI {
         GUI {
             game: game,
             console: console,
-            current_screen: screens::GameScreen::new(),
+            screens: vec!(screens::GameScreen::new()),
             state: State::Running,
         }
     }
@@ -51,18 +51,21 @@ impl GUI {
     }
 
     fn handle_input(&mut self) {
-        if let Some(ScreenChange::ExitGame) = self.current_screen.input(&mut self.game, &mut self.console) {
-            self.state = State::Exited;
+        match self.screens[0].input(&mut self.game, &mut self.console) {
+            Some(ScreenChange::AddScreen(screen)) => { self.screens.insert(0, screen) },
+            Some(ScreenChange::RemoveScreen) => { self.screens.remove(0); }
+            Some(ScreenChange::ExitGame) => { self.state = State::Exited },
+            None => {}
         }
     }
 
     fn update(&mut self) {
-        self.current_screen.update(&mut self.game, &mut self.console);
+        self.screens[0].update(&mut self.game, &mut self.console);
     }
 
     fn render(&mut self) {
         self.console.clear();
-        self.current_screen.render(&mut self.game, &mut self.console);
+        self.screens[0].render(&mut self.game, &mut self.console);
         self.console.flush();
     }
 
