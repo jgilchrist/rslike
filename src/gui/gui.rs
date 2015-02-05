@@ -1,6 +1,6 @@
 use engine::Game;
 use gui::Console;
-use gui::screens;
+use gui::screens::{self, Screen, ScreenChange};
 use util::units::Size;
 
 #[derive(PartialEq)]
@@ -14,18 +14,6 @@ pub struct GUI {
     pub screens: Vec<Box<Screen + 'static>>,
     game: Game,
     state: State,
-}
-
-pub trait Screen {
-    fn input(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
-    fn update(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
-    fn render(&self, &mut Game, &mut Console);
-}
-
-pub enum ScreenChange {
-    AddScreen(Box<Screen + 'static>),
-    RemoveScreen,
-    ExitGame,
 }
 
 impl GUI {

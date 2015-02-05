@@ -1,5 +1,6 @@
 use engine::Game;
-use gui::{Console, Colors, Key, Screen, ScreenChange};
+use gui::screens::{Screen, ScreenChange};
+use gui::{Console, Colors, Key};
 use util::units::{Direction, Point};
 
 #[allow(missing_copy_implementations)]

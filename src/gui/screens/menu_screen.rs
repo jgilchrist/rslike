@@ -1,6 +1,6 @@
 use engine::Game;
-use gui::{Console, Key, Screen, ScreenChange};
-use gui::screens;
+use gui::{Console, Key};
+use gui::screens::{self, Screen, ScreenChange};
 use util::units::Point;
 
 #[allow(missing_copy_implementations)]
