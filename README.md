@@ -5,6 +5,7 @@ rslike aims to be a roguelike game written in idiomatic Rust.
 ## Dependencies
 
 * [tcod-rs](https://github.com/tomassedovic/tcod-rs)
+    * `gcc` `g++` `make` `upx` `electric-fence` `libsdl1.2-dev` `mercurial`
 
 ## Usage
 
