@@ -10,6 +10,7 @@ pub enum Key {
     Left,
     Right,
     Escape,
+    Enter,
 }
 
 pub struct Console {
@@ -63,6 +64,7 @@ impl Console {
                     tcod::Key::Special(tcod::KeyCode::Left) => Some(Key::Left),
                     tcod::Key::Special(tcod::KeyCode::Right) => Some(Key::Right),
                     tcod::Key::Special(tcod::KeyCode::Escape) => Some(Key::Escape),
+                    tcod::Key::Special(tcod::KeyCode::Enter) => Some(Key::Enter),
                     _ => None
                 }
             }

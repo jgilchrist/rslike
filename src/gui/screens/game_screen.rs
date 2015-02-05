@@ -31,6 +31,7 @@ impl Screen for GameScreen {
                 Key::Escape => {
                     return Some(ScreenChange::ExitGame);
                 },
+                _ => {}
             }
         }
 
