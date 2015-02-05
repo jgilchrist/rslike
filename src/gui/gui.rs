@@ -39,22 +39,28 @@ impl GUI {
     }
 
     fn handle_input(&mut self) {
-        match self.screens[0].input(&mut self.game, &mut self.console) {
-            Some(ScreenChange::AddScreen(screen)) => { self.screens.insert(0, screen) },
-            Some(ScreenChange::RemoveScreen) => { self.screens.remove(0); }
-            Some(ScreenChange::ExitGame) => { self.state = State::Exited },
-            None => {}
-        }
+        let outcome = self.screens[0].input(&mut self.game, &mut self.console);
+        self.update_screens(outcome);
     }
 
     fn update(&mut self) {
-        self.screens[0].update(&mut self.game, &mut self.console);
+        let outcome = self.screens[0].update(&mut self.game, &mut self.console);
+        self.update_screens(outcome);
     }
 
     fn render(&mut self) {
         self.console.clear();
         self.screens[0].render(&mut self.game, &mut self.console);
         self.console.flush();
+    }
+
+    fn update_screens(&mut self, outcome: Option<ScreenChange>) {
+        match outcome {
+            Some(ScreenChange::AddScreen(screen)) => { self.screens.insert(0, screen) },
+            Some(ScreenChange::RemoveScreen) => { self.screens.remove(0); }
+            Some(ScreenChange::ExitGame) => { self.state = State::Exited },
+            None => {}
+        }
     }
 
     pub fn exited(&self) -> bool {
