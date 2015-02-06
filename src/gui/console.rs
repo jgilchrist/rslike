@@ -22,7 +22,7 @@ impl Console {
 
     pub fn new(size: Size) -> Console {
         tcod::system::set_fps(60);
-        tcod::Console::set_custom_font(Path::new("/home/jonny/code/rslike/assets/fonts/terminal12x12_gs_ro.png"), tcod::FONT_LAYOUT_ASCII_INROW | tcod::FONT_TYPE_GREYSCALE, 0, 0);
+        tcod::Console::set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::FONT_LAYOUT_ASCII_INROW | tcod::FONT_TYPE_GREYSCALE, 0, 0);
 
         let (width, height) = size.as_tuple();
         let console = tcod::Console::init_root(width, height, "rslike", false);

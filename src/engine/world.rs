@@ -13,7 +13,7 @@ impl World {
         World {
             player: Actor::new("Player", Point::new(10, 10), 100, '@'),
             actors: Vec::new(),
-            map: Map::new(Path::new("/home/jonny/code/rslike/assets/maps/test.map")),
+            map: Map::new(Path::new("assets/maps/test.map")),
         }
     }
 
