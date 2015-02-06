@@ -10,5 +10,5 @@ doc = false
 test = false
 doctest = false
 
-[dependencies]
-tcod = "*"
+[dependencies.tcod]
+git = "https://github.com/jgilchrist/tcod-rs"
