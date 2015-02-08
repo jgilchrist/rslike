@@ -1,4 +1,4 @@
-use gui::Color;
+use gui::{Color, Colors};
 use util::units::{AsTuple, Point, Size};
 
 use tcod;
@@ -43,6 +43,22 @@ impl Console {
 
     pub fn put(&mut self, pos: Point, c: char, f_color: Color, b_color: Color) {
         self.console.put_char_ex(pos.x, pos.y, c, f_color, b_color);
+    }
+
+    pub fn print_plain(&mut self, pos: Point, text: &str) {
+        self.console.print_ex(pos.x, pos.y, tcod::BackgroundFlag::None, tcod::TextAlignment::Left, text);
+    }
+
+    pub fn print(&mut self, pos: Point, text: &str, f_color: Color, b_color: Color) {
+        self.console.set_default_background(b_color);
+        self.console.set_default_foreground(f_color);
+        self.console.print_ex(pos.x, pos.y, tcod::BackgroundFlag::None, tcod::TextAlignment::Left, text);
+        self.console.set_default_background(Colors::black);
+        self.console.set_default_foreground(Colors::white);
+    }
+
+    pub fn print_align(&mut self, pos: Point, text: &str, alignment: tcod::TextAlignment) {
+        self.console.print_ex(pos.x, pos.y, tcod::BackgroundFlag::None, alignment, text);
     }
 
     pub fn clear(&mut self) {
