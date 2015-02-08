@@ -1,5 +1,5 @@
 use engine::Game;
-use gui::screens::{Screen, ScreenChange};
+use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use util::units::{Direction, Point};
 
@@ -31,7 +31,7 @@ impl Screen for GameScreen {
                     game.world.walk(Direction::Right);
                 },
                 Key::Escape => {
-                    return Some(ScreenChange::RemoveScreen);
+                    return Some(ScreenChange::AddScreen(screens::PauseScreen::new()));
                 },
                 _ => {}
             }
