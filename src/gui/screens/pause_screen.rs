@@ -1,13 +1,12 @@
 use engine::Game;
-use gui::{Console, Key};
+use gui::{Console, Key, Menu};
 use gui::screens::{Screen, ScreenChange};
 use util::units::Point;
 
 use std::fmt;
 
 pub struct PauseScreen {
-    menu_items: Vec<MenuItem>,
-    selected: usize,
+    menu: Menu<MenuItem>,
 }
 
 enum MenuItem {
@@ -28,8 +27,7 @@ impl PauseScreen {
     pub fn new() -> Box<Screen + 'static> {
         Box::new(
             PauseScreen {
-                menu_items: vec![MenuItem::Resume, MenuItem::Exit],
-                selected: 0,
+                menu: Menu::new(vec![MenuItem::Resume, MenuItem::Exit]),
             }
         )
     }
@@ -42,14 +40,13 @@ impl Screen for PauseScreen {
         if let Some(key) = console.check_for_keypress() {
             match key {
                 Key::Up => {
-                    if self.selected > 0 { self.selected -= 1; }
+                    self.menu.prev();
                 }
                 Key::Down => {
-                    if self.selected < self.menu_items.len() - 1 { self.selected += 1; }
+                    self.menu.next();
                 }
                 Key::Enter => {
-                    let action = &self.menu_items[self.selected];
-                    match *action {
+                    match *self.menu.selected() {
                         MenuItem::Resume => return Some(ScreenChange::RemoveScreen),
                         MenuItem::Exit => return Some(ScreenChange::ExitGame),
                     }
@@ -71,9 +68,9 @@ impl Screen for PauseScreen {
     fn render(&mut self, game: &mut Game, console: &mut Console) {
         console.print_plain(Point::new(0, 0), "Paused");
 
-        for (i, menu_item) in self.menu_items.iter().enumerate() {
+        for (i, menu_item) in self.menu.enum_items() {
             console.print_plain(Point::new(20, 20) + (0, i as i32), format!("{}", menu_item).as_slice());
-            if self.selected == i {
+            if self.menu.is_selected(i) {
                 console.put_plain(Point::new(20, 20) + (-2, i as i32), '*');
             }
         }

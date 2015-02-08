@@ -1,5 +1,5 @@
 use engine::Game;
-use gui::{Console, Key};
+use gui::{Console, Key, Menu};
 use gui::screens::{self, Screen, ScreenChange};
 use util::units::Point;
 
@@ -7,8 +7,7 @@ use std::fmt;
 
 #[allow(missing_copy_implementations)]
 pub struct MenuScreen {
-    menu_items: Vec<MenuItem>,
-    selected: usize,
+    menu: Menu<MenuItem>,
 }
 
 enum MenuItem {
@@ -29,8 +28,7 @@ impl MenuScreen {
     pub fn new() -> Box<Screen + 'static> {
         Box::new(
             MenuScreen {
-                menu_items: vec![MenuItem::StartGame, MenuItem::Exit],
-                selected: 0,
+                menu: Menu::new(vec![MenuItem::StartGame, MenuItem::Exit]),
             }
         )
     }
@@ -43,14 +41,13 @@ impl Screen for MenuScreen {
         if let Some(key) = console.check_for_keypress() {
             match key {
                 Key::Up => {
-                    if self.selected > 0 { self.selected -= 1; }
+                    self.menu.prev();
                 }
                 Key::Down => {
-                    if self.selected < self.menu_items.len() - 1 { self.selected += 1; }
+                    self.menu.next();
                 }
                 Key::Enter => {
-                    let action = &self.menu_items[self.selected];
-                    match *action {
+                    match *self.menu.selected() {
                         MenuItem::StartGame => return Some(ScreenChange::AddScreen(screens::GameScreen::new())),
                         MenuItem::Exit => return Some(ScreenChange::ExitGame),
                     }
@@ -80,9 +77,9 @@ impl Screen for MenuScreen {
         console.print_plain(logo_loc + (0, 7), "   #   # ##### ##### #  #   # ##### ");
         console.print_plain(logo_loc + (0, 8), "                                    ");
 
-        for (i, menu_item) in self.menu_items.iter().enumerate() {
+        for (i, menu_item) in self.menu.enum_items() {
             console.print_plain(Point::new(20, 20) + (0, i as i32), format!("{}", menu_item).as_slice());
-            if self.selected == i {
+            if self.menu.is_selected(i) {
                 console.put_plain(Point::new(20, 20) + (-2, i as i32), '*');
             }
         }
