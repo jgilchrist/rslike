@@ -68,10 +68,12 @@ impl Screen for PauseScreen {
     fn render(&mut self, game: &mut Game, console: &mut Console) {
         console.print_plain(Point::new(0, 0), "Paused");
 
+        let menu_location = Point::new(20, 20);
+
         for (i, menu_item) in self.menu.enum_items() {
-            console.print_plain(Point::new(20, 20) + (0, i as i32), format!("{}", menu_item).as_slice());
+            console.print_plain(menu_location.down(i as i32).right(2), format!("{}", menu_item).as_slice());
             if self.menu.is_selected(i) {
-                console.put_plain(Point::new(20, 20) + (-2, i as i32), '*');
+                console.put_plain(menu_location.down(i as i32), '>');
             }
         }
     }
