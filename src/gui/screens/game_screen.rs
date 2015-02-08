@@ -15,7 +15,7 @@ impl GameScreen {
 impl Screen for GameScreen {
 
     #[allow(unused)]
-    fn input(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
+    fn input(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         if let Some(key) = console.check_for_keypress() {
             match key {
                 Key::Up => {
@@ -31,7 +31,7 @@ impl Screen for GameScreen {
                     game.world.walk(Direction::Right);
                 },
                 Key::Escape => {
-                    return Some(ScreenChange::ExitGame);
+                    return Some(ScreenChange::RemoveScreen);
                 },
                 _ => {}
             }
@@ -41,12 +41,12 @@ impl Screen for GameScreen {
     }
 
     #[allow(unused)]
-    fn update(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
+    fn update(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         return None;
     }
 
     #[allow(unused)]
-    fn render(&self, game: &mut Game, console: &mut Console) {
+    fn render(&mut self, game: &mut Game, console: &mut Console) {
         self.render_map(game, console);
 
         let repr = game.world.player.repr;

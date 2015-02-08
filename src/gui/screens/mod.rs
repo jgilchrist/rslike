@@ -5,9 +5,9 @@ pub use self::menu_screen::MenuScreen;
 pub use self::game_screen::GameScreen;
 
 pub trait Screen {
-    fn input(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
-    fn update(&self, &mut Game, &mut Console) -> Option<ScreenChange>;
-    fn render(&self, &mut Game, &mut Console);
+    fn input(&mut self, &mut Game, &mut Console) -> Option<ScreenChange>;
+    fn update(&mut self, &mut Game, &mut Console) -> Option<ScreenChange>;
+    fn render(&mut self, &mut Game, &mut Console);
 }
 
 pub enum ScreenChange {
