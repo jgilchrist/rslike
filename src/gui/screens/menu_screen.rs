@@ -3,7 +3,7 @@ use gui::{Console, Key};
 use gui::screens::{self, Screen, ScreenChange};
 use util::units::Point;
 
-use std::fmt::{self, Display};
+use std::fmt;
 
 #[allow(missing_copy_implementations)]
 pub struct MenuScreen {
@@ -11,13 +11,12 @@ pub struct MenuScreen {
     selected: usize,
 }
 
-#[derive(Debug)]
 enum MenuItem {
     StartGame,
     Exit,
 }
 
-impl Display for MenuItem {
+impl fmt::Display for MenuItem {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
         match *self {
             MenuItem::StartGame => write!(fmt, "Start Game"),
@@ -65,7 +64,7 @@ impl Screen for MenuScreen {
 
     #[allow(unused)]
     fn update(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
-        return None;
+        None
     }
 
     #[allow(unused)]
