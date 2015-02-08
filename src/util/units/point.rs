@@ -1,6 +1,6 @@
 use util::units::{AsTuple, Direction};
 
-use std::ops::Add;
+use std::ops::{Add, Sub};
 
 #[derive(Copy, Debug, PartialEq)]
 pub struct Point {
@@ -17,6 +17,11 @@ impl Point {
     pub fn zero() -> Point {
         Point { x: 0, y: 0 }
     }
+
+    pub fn up(&self, n: i32)    -> Point { *self - (0, n) }
+    pub fn down(&self, n: i32)  -> Point { *self + (0, n) }
+    pub fn left(&self, n: i32)  -> Point { *self - (n, 0) }
+    pub fn right(&self, n: i32) -> Point { *self + (n, 0) }
 
     pub fn move_dir(&self, dir: Direction) -> Point {
         *self + dir.as_tuple()
@@ -39,6 +44,24 @@ impl Add<(i32, i32)> for Point {
     fn add(self, other: (i32, i32)) -> Point {
         let (ox, oy) = other;
         Point { x: self.x + ox, y: self.y + oy }
+    }
+}
+
+impl Sub for Point {
+    type Output = Point;
+
+    fn sub(self, other: Point) -> Point {
+        let (ox, oy) = other.as_tuple();
+        Point { x: self.x - ox, y: self.y - oy }
+    }
+}
+
+impl Sub<(i32, i32)> for Point {
+    type Output = Point;
+
+    fn sub(self, other: (i32, i32)) -> Point {
+        let (ox, oy) = other;
+        Point { x: self.x - ox, y: self.y - oy }
     }
 }
 
