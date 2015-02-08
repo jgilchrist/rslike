@@ -14,6 +14,7 @@ impl MenuScreen {
 
 impl Screen for MenuScreen {
 
+    #[allow(unused)]
     fn input(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         if let Some(key) = console.check_for_keypress() {
             match key {
@@ -30,10 +31,12 @@ impl Screen for MenuScreen {
         None
     }
 
+    #[allow(unused)]
     fn update(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         return None;
     }
 
+    #[allow(unused)]
     fn render(&self, game: &mut Game, console: &mut Console) {
         console.put_plain(Point::new(0, 0), 'M');
         console.put_plain(Point::new(1, 0), 'e');

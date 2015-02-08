@@ -14,6 +14,7 @@ impl GameScreen {
 
 impl Screen for GameScreen {
 
+    #[allow(unused)]
     fn input(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         if let Some(key) = console.check_for_keypress() {
             match key {
@@ -39,10 +40,12 @@ impl Screen for GameScreen {
         None
     }
 
+    #[allow(unused)]
     fn update(&self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         return None;
     }
 
+    #[allow(unused)]
     fn render(&self, game: &mut Game, console: &mut Console) {
         self.render_map(game, console);
 
