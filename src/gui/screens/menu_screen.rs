@@ -10,6 +10,16 @@ pub struct MenuScreen {
     menu: Menu<MenuItem>,
 }
 
+static LOGO: &'static str =
+       "                                 \n\
+        ##### ##### #     #  #   # ##### \n\
+        #   # #     #     #  #  #  #     \n\
+        #   # #     #     #  # #   #     \n\
+        ##### ##### #     #  ##    ###   \n\
+        # #       # #     #  # #   #     \n\
+        #  #      # #     #  #  #  #     \n\
+        #   # ##### ##### #  #   # ##### \n";
+
 enum MenuItem {
     StartGame,
     Exit,
@@ -66,21 +76,15 @@ impl Screen for MenuScreen {
 
     #[allow(unused)]
     fn render(&mut self, game: &mut Game, console: &mut Console) {
-        let logo_loc = Point::new(0, 0);
-        console.print_plain(logo_loc + (0, 0), "                                    ");
-        console.print_plain(logo_loc + (0, 1), "   ##### ##### #     #  #   # ##### ");
-        console.print_plain(logo_loc + (0, 2), "   #   # #     #     #  #  #  #     ");
-        console.print_plain(logo_loc + (0, 3), "   #   # #     #     #  # #   #     ");
-        console.print_plain(logo_loc + (0, 4), "   ##### ##### #     #  ##    ###   ");
-        console.print_plain(logo_loc + (0, 5), "   # #       # #     #  # #   #     ");
-        console.print_plain(logo_loc + (0, 6), "   #  #      # #     #  #  #  #     ");
-        console.print_plain(logo_loc + (0, 7), "   #   # ##### ##### #  #   # ##### ");
-        console.print_plain(logo_loc + (0, 8), "                                    ");
+        let logo_loc = Point::new(10, 10);
+        console.print_plain(logo_loc, LOGO);
+
+        let menu_loc = Point::new(20, 20);
 
         for (i, menu_item) in self.menu.enum_items() {
-            console.print_plain(Point::new(20, 20) + (0, i as i32), format!("{}", menu_item).as_slice());
+            console.print_plain(menu_loc.right(2).down(i as i32), format!("{}", menu_item).as_slice());
             if self.menu.is_selected(i) {
-                console.put_plain(Point::new(20, 20) + (-2, i as i32), '*');
+                console.put_plain(menu_loc.down(i as i32), '>');
             }
         }
     }
