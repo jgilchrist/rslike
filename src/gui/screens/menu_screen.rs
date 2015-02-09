@@ -76,10 +76,10 @@ impl Screen for MenuScreen {
 
     #[allow(unused)]
     fn render(&mut self, game: &mut Game, console: &mut Console) {
-        let logo_loc = Point::new(10, 10);
+        let logo_loc = Point::new(24, 20);
         console.print_plain(logo_loc, LOGO);
 
-        let menu_loc = Point::new(20, 20);
+        let menu_loc = Point::new(33, 30);
 
         for (i, menu_item) in self.menu.enum_items() {
             console.print_plain(menu_loc.right(2).down(i as i32), format!("{}", menu_item).as_slice());
