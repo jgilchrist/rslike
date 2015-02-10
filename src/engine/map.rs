@@ -9,7 +9,7 @@ pub struct Map {
 impl Map {
 
     pub fn new<T>(mappish: T) -> Map where T: IntoMap {
-        let result = mappish.into_map();
+        let result = mappish.as_map();
 
         let map = match result {
             Ok(map) => map,
