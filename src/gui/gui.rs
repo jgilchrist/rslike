@@ -1,6 +1,7 @@
 use engine::Game;
 use gui::Console;
 use gui::screens::{self, Screen, ScreenChange};
+use util::FirstLast;
 use util::units::Size;
 
 #[derive(PartialEq)]
@@ -39,18 +40,18 @@ impl GUI {
     }
 
     fn handle_input(&mut self) {
-        let outcome = self.screens[0].input(&mut self.game, &mut self.console);
+        let outcome = self.screens.first().input(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn update(&mut self) {
-        let outcome = self.screens[0].update(&mut self.game, &mut self.console);
+        let outcome = self.screens.first().update(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn render(&mut self) {
         self.console.clear();
-        self.screens[0].render(&mut self.game, &mut self.console);
+        self.screens.first().render(&mut self.game, &mut self.console);
         self.console.flush();
     }
 
