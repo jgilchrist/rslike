@@ -35,7 +35,7 @@ impl fmt::Display for MenuItem {
 }
 
 impl MenuScreen {
-    pub fn new() -> Box<Screen + 'static> {
+    pub fn new() -> Box<Screen> {
         Box::new(
             MenuScreen {
                 menu: Menu::new(vec![MenuItem::StartGame, MenuItem::Exit]),

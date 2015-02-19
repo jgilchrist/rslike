@@ -12,7 +12,7 @@ pub enum State {
 
 pub struct GUI {
     pub console: Console,
-    pub screens: Vec<Box<Screen + 'static>>,
+    pub screens: Vec<Box<Screen>>,
     game: Game,
     state: State,
 }

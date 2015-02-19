@@ -24,7 +24,7 @@ impl fmt::Display for MenuItem {
 }
 
 impl PauseScreen {
-    pub fn new() -> Box<Screen + 'static> {
+    pub fn new() -> Box<Screen> {
         Box::new(
             PauseScreen {
                 menu: Menu::new(vec![MenuItem::Resume, MenuItem::Exit]),

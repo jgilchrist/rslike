@@ -7,7 +7,7 @@ use util::units::{Direction, Point};
 pub struct GameScreen;
 
 impl GameScreen {
-    pub fn new() -> Box<Screen + 'static> {
+    pub fn new() -> Box<Screen> {
         Box::new(GameScreen)
     }
 }

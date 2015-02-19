@@ -12,7 +12,7 @@ pub trait Screen {
 }
 
 pub enum ScreenChange {
-    AddScreen(Box<Screen + 'static>),
+    AddScreen(Box<Screen>),
     RemoveScreen,
     ExitGame,
 }
