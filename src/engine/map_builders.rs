@@ -1,7 +1,8 @@
 use engine::{Tile, Map};
 use util::units::Size;
 
-use std::old_io;
+use std::fs::File;
+use std::io::Read;
 
 pub trait IntoMap {
     fn as_map(self) -> MapBuildResult;
@@ -37,8 +38,10 @@ impl IntoMap for String {
 
 impl IntoMap for Path {
     fn as_map(self) -> MapBuildResult {
-        let mut level_file = old_io::File::open(&self);
-        let level_string = level_file.read_to_string().ok().expect("Failed to read level file");
+        let mut level_file = File::open(&self).ok().expect("Could not find level file");
+        let mut level_string = String::new();
+
+        level_file.read_to_string(&mut level_string).ok().expect("Could not read from level file");
 
         Ok(Map::new(level_string))
     }
