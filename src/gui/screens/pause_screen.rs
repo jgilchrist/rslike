@@ -70,7 +70,7 @@ impl Screen for PauseScreen {
 
         let menu_location = Point::new(20, 20);
 
-        for (i, menu_item) in self.menu.enum_items() {
+        for (i, menu_item) in self.menu.items().enumerate() {
             console.print_plain(menu_location.down(i as i32).right(2), &format!("{}", menu_item));
             if self.menu.is_selected(i) {
                 console.put_plain(menu_location.down(i as i32), '>');

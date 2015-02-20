@@ -81,7 +81,7 @@ impl Screen for MenuScreen {
 
         let menu_loc = Point::new(33, 30);
 
-        for (i, menu_item) in self.menu.enum_items() {
+        for (i, menu_item) in self.menu.items().enumerate() {
             console.print_plain(menu_loc.right(2).down(i as i32), &format!("{}", menu_item));
             if self.menu.is_selected(i) {
                 console.put_plain(menu_loc.down(i as i32), '>');

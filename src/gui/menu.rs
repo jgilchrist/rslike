@@ -1,5 +1,4 @@
 use std::slice::Iter;
-use std::iter::Enumerate;
 
 pub struct Menu<T> {
     menu_items: Vec<T>,
@@ -33,9 +32,5 @@ impl<T> Menu<T> {
 
     pub fn items(&self) -> Iter<T> {
         self.menu_items.iter()
-    }
-
-    pub fn enum_items(&self) -> Enumerate<Iter<T>> {
-        self.menu_items.iter().enumerate()
     }
 }
