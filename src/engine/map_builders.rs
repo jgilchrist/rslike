@@ -23,7 +23,7 @@ fn build_line(l: &&str) -> Vec<Tile> {
 
 impl IntoMap for String {
     fn as_map(self) -> MapBuildResult {
-        let lines: Vec<&str> = self.split('\n').collect();
+        let lines: Vec<&str> = self.split('\n').filter(|l| !l.is_empty()).collect();
 
         if !lines.iter().all(|x| x.len() == lines[0].len()) { return Err("Different length lines") };
 
