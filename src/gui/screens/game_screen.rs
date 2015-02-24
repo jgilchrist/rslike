@@ -2,22 +2,23 @@ use engine::Game;
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
-use util::units::{Direction, Point};
+use util::Rectangle;
+use util::units::{Direction, Point, Size};
 
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
-    map_location: Point,
-    info_location: Point,
-    message_location: Point,
+    map_frame: Rectangle,
+    info_frame: Rectangle,
+    message_frame: Rectangle,
 }
 
 impl GameScreen {
     pub fn new() -> Box<Screen> {
         Box::new(
             GameScreen {
-                map_location: Point::new(16, 1),
-                info_location: Point::new(1, 1),
-                message_location: Point::new(16, 41),
+                map_frame: Rectangle::new(Point::new(16, 1), Size::new(63, 38)),
+                info_frame: Rectangle::new(Point::new(1, 1), Size::new(13, 48)),
+                message_frame: Rectangle::new(Point::new(16, 41), Size::new(63, 8)),
             }
         )
     }
@@ -63,7 +64,7 @@ impl Screen for GameScreen {
         let repr = game.world.player.repr;
         let pos = game.world.player.pos;
 
-        console.put_plain(self.map_location + pos, repr);
+        console.put_plain(self.map_frame.location() + pos, repr);
 
         self.draw_borders(game, console);
     }
@@ -73,30 +74,30 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        self.draw_box(console, self.map_location + Point::new(-1, -1), 64, 39);
-        console.print_plain(self.map_location + Point::new(0, -1), "Map");
+        self.draw_box(console, self.map_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
+        console.print_plain(self.map_frame.move_dir(Point::new(0, -1)).location(), "Map");
 
-        self.draw_box(console, self.info_location + Point::new(-1, -1), 14, 49);
-        console.print_plain(self.info_location + Point::new(0, -1), "Info");
+        self.draw_box(console, self.info_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
+        console.print_plain(self.info_frame.move_dir(Point::new(0, -1)).location(), "Info");
 
-        self.draw_box(console, self.message_location + Point::new(-1, -1), 64, 9);
-        console.print_plain(self.message_location + Point::new(0, -1), "Messages");
+        self.draw_box(console, self.message_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
+        console.print_plain(self.message_frame.move_dir(Point::new(0, -1)).location(), "Messages");
     }
 
-    fn draw_box(&self, console: &mut Console, loc: Point, width: i32, height: i32) {
-        console.put_plain(loc + Point::new(0, 0), chars::NW as char);
-        console.put_plain(loc + Point::new(width, 0), chars::NE as char);
-        console.put_plain(loc + Point::new(0, height), chars::SW as char);
-        console.put_plain(loc + Point::new(width, height), chars::SE as char);
+    fn draw_box(&self, console: &mut Console, rect: Rectangle) {
+        console.put_plain(rect.location() + Point::new(0, 0), chars::NW as char);
+        console.put_plain(rect.location() + Point::new(rect.width(), 0), chars::NE as char);
+        console.put_plain(rect.location() + Point::new(0, rect.height()), chars::SW as char);
+        console.put_plain(rect.location() + Point::new(rect.width(), rect.height()), chars::SE as char);
 
-        for x in 1..width {
-            console.put_plain(loc + Point::new(x, 0), chars::HLINE as char);
-            console.put_plain(loc + Point::new(x, height), chars::HLINE as char);
+        for x in 1..rect.width() {
+            console.put_plain(rect.location() + Point::new(x, 0), chars::HLINE as char);
+            console.put_plain(rect.location() + Point::new(x, rect.height()), chars::HLINE as char);
         }
 
-        for y in 1..height {
-            console.put_plain(loc + Point::new(0, y), chars::VLINE as char);
-            console.put_plain(loc + Point::new(width, y), chars::VLINE as char);
+        for y in 1..rect.height() {
+            console.put_plain(rect.location() + Point::new(0, y), chars::VLINE as char);
+            console.put_plain(rect.location() + Point::new(rect.width(), y), chars::VLINE as char);
         }
     }
 
@@ -108,7 +109,7 @@ impl GameScreen {
 
         for (y, line) in map.tiles[0..height].iter().enumerate() {
             for (x, cell) in line[0..width].iter().enumerate() {
-                console.put(self.map_location + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
+                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
     }
