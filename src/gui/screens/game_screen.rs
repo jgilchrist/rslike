@@ -73,56 +73,31 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        console.put_plain(self.map_location + Point::new(-1, -1), chars::NW as char);
-        console.put_plain(self.map_location + Point::new(63, -1), chars::NE as char);
-        console.put_plain(self.map_location + Point::new(-1, 38), chars::SW as char);
-        console.put_plain(self.map_location + Point::new(63, 38), chars::SE as char);
-
-        for x in 0..63 {
-            console.put_plain(self.map_location + Point::new(x, -1), chars::HLINE as char);
-            console.put_plain(self.map_location + Point::new(x, 38), chars::HLINE as char);
-        }
-
-        for y in 0..38 {
-            console.put_plain(self.map_location + Point::new(-1, y), chars::VLINE as char);
-            console.put_plain(self.map_location + Point::new(63, y), chars::VLINE as char);
-        }
-
+        self.draw_box(console, self.map_location + Point::new(-1, -1), 64, 39);
         console.print_plain(self.map_location + Point::new(0, -1), "Map");
 
-        console.put_plain(self.info_location + Point::new(-1, -1), chars::NW as char);
-        console.put_plain(self.info_location + Point::new(13, -1), chars::NE as char);
-        console.put_plain(self.info_location + Point::new(-1, 48), chars::SW as char);
-        console.put_plain(self.info_location + Point::new(13, 48), chars::SE as char);
-
-        for x in 0..13 {
-            console.put_plain(self.info_location + Point::new(x, -1), chars::HLINE as char);
-            console.put_plain(self.info_location + Point::new(x, 48), chars::HLINE as char);
-        }
-
-        for y in 0..48 {
-            console.put_plain(self.info_location + Point::new(-1, y), chars::VLINE as char);
-            console.put_plain(self.info_location + Point::new(13, y), chars::VLINE as char);
-        }
-
+        self.draw_box(console, self.info_location + Point::new(-1, -1), 14, 49);
         console.print_plain(self.info_location + Point::new(0, -1), "Info");
 
-        console.put_plain(self.message_location + Point::new(-1, -1), chars::NW as char);
-        console.put_plain(self.message_location + Point::new(63, -1), chars::NE as char);
-        console.put_plain(self.message_location + Point::new(-1,  8), chars::SW as char);
-        console.put_plain(self.message_location + Point::new(63,  8), chars::SE as char);
-
-        for x in 0..63 {
-            console.put_plain(self.message_location + Point::new(x, -1), chars::HLINE as char);
-            console.put_plain(self.message_location + Point::new(x,  8), chars::HLINE as char);
-        }
-
-        for y in 0..8 {
-            console.put_plain(self.message_location + Point::new(-1, y), chars::VLINE as char);
-            console.put_plain(self.message_location + Point::new(63, y), chars::VLINE as char);
-        }
-
+        self.draw_box(console, self.message_location + Point::new(-1, -1), 64, 9);
         console.print_plain(self.message_location + Point::new(0, -1), "Messages");
+    }
+
+    fn draw_box(&self, console: &mut Console, loc: Point, width: i32, height: i32) {
+        console.put_plain(loc + Point::new(0, 0), chars::NW as char);
+        console.put_plain(loc + Point::new(width, 0), chars::NE as char);
+        console.put_plain(loc + Point::new(0, height), chars::SW as char);
+        console.put_plain(loc + Point::new(width, height), chars::SE as char);
+
+        for x in 1..width {
+            console.put_plain(loc + Point::new(x, 0), chars::HLINE as char);
+            console.put_plain(loc + Point::new(x, height), chars::HLINE as char);
+        }
+
+        for y in 1..height {
+            console.put_plain(loc + Point::new(0, y), chars::VLINE as char);
+            console.put_plain(loc + Point::new(width, y), chars::VLINE as char);
+        }
     }
 
     #[allow(unused)]
