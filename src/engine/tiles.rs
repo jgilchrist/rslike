@@ -20,7 +20,7 @@ impl Tile {
         }
     }
 
-    pub fn walkable(&self) -> bool {
+    pub fn is_walkable(&self) -> bool {
         match *self {
             Tile::Empty => true,
             Tile::Wall => false,

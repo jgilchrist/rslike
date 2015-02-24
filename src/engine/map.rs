@@ -39,7 +39,7 @@ impl Map {
     }
 
     pub fn is_walkable(&self, loc: Point) -> bool {
-        self.at(loc).walkable()
+        self.at(loc).is_walkable()
     }
 
     pub fn set_tile(&mut self, loc: Point, tile: Tile) {
