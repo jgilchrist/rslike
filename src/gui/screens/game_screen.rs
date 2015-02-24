@@ -1,6 +1,7 @@
 use engine::Game;
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
+use gui::chars;
 use util::units::{Direction, Point};
 
 #[allow(missing_copy_implementations)]
@@ -72,45 +73,38 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        let CHAR_VLINE = 179 as char;
-        let CHAR_HLINE = 196 as char;
-        let CHAR_CORNER_NW = 218 as char;
-        let CHAR_CORNER_NE = 191 as char;
-        let CHAR_CORNER_SW = 192 as char;
-        let CHAR_CORNER_SE = 217 as char;
-
-        console.put_plain(self.map_location + Point::new(-1, -1), CHAR_CORNER_NW);
-        console.put_plain(self.map_location + Point::new(63, -1), CHAR_CORNER_NE);
-        console.put_plain(self.map_location + Point::new(-1, 38), CHAR_CORNER_SW);
-        console.put_plain(self.map_location + Point::new(63, 38), CHAR_CORNER_SE);
+        console.put_plain(self.map_location + Point::new(-1, -1), chars::NW as char);
+        console.put_plain(self.map_location + Point::new(63, -1), chars::NE as char);
+        console.put_plain(self.map_location + Point::new(-1, 38), chars::SW as char);
+        console.put_plain(self.map_location + Point::new(63, 38), chars::SE as char);
 
         for x in 0..63 {
-            console.put_plain(self.map_location + Point::new(x, -1), CHAR_HLINE);
-            console.put_plain(self.map_location + Point::new(x, 38), CHAR_HLINE);
+            console.put_plain(self.map_location + Point::new(x, -1), chars::HLINE as char);
+            console.put_plain(self.map_location + Point::new(x, 38), chars::HLINE as char);
         }
 
         for y in 0..38 {
-            console.put_plain(self.map_location + Point::new(-1, y), CHAR_VLINE);
-            console.put_plain(self.map_location + Point::new(63, y), CHAR_VLINE);
+            console.put_plain(self.map_location + Point::new(-1, y), chars::VLINE as char);
+            console.put_plain(self.map_location + Point::new(63, y), chars::VLINE as char);
         }
 
         console.put_plain(self.map_location + Point::new(0, -1), 'M');
         console.put_plain(self.map_location + Point::new(1, -1), 'a');
         console.put_plain(self.map_location + Point::new(2, -1), 'p');
 
-        console.put_plain(self.info_location + Point::new(-1, -1), CHAR_CORNER_NW);
-        console.put_plain(self.info_location + Point::new(13, -1), CHAR_CORNER_NE);
-        console.put_plain(self.info_location + Point::new(-1, 48), CHAR_CORNER_SW);
-        console.put_plain(self.info_location + Point::new(13, 48), CHAR_CORNER_SE);
+        console.put_plain(self.info_location + Point::new(-1, -1), chars::NW as char);
+        console.put_plain(self.info_location + Point::new(13, -1), chars::NE as char);
+        console.put_plain(self.info_location + Point::new(-1, 48), chars::SW as char);
+        console.put_plain(self.info_location + Point::new(13, 48), chars::SE as char);
 
         for x in 0..13 {
-            console.put_plain(self.info_location + Point::new(x, -1), CHAR_HLINE);
-            console.put_plain(self.info_location + Point::new(x, 48), CHAR_HLINE);
+            console.put_plain(self.info_location + Point::new(x, -1), chars::HLINE as char);
+            console.put_plain(self.info_location + Point::new(x, 48), chars::HLINE as char);
         }
 
         for y in 0..48 {
-            console.put_plain(self.info_location + Point::new(-1, y), CHAR_VLINE);
-            console.put_plain(self.info_location + Point::new(13, y), CHAR_VLINE);
+            console.put_plain(self.info_location + Point::new(-1, y), chars::VLINE as char);
+            console.put_plain(self.info_location + Point::new(13, y), chars::VLINE as char);
         }
 
         console.put_plain(self.info_location + Point::new(0, -1), 'I');
@@ -118,19 +112,19 @@ impl GameScreen {
         console.put_plain(self.info_location + Point::new(2, -1), 'f');
         console.put_plain(self.info_location + Point::new(3, -1), 'o');
 
-        console.put_plain(self.message_location + Point::new(-1, -1), CHAR_CORNER_NW);
-        console.put_plain(self.message_location + Point::new(63, -1), CHAR_CORNER_NE);
-        console.put_plain(self.message_location + Point::new(-1,  8), CHAR_CORNER_SW);
-        console.put_plain(self.message_location + Point::new(63,  8), CHAR_CORNER_SE);
+        console.put_plain(self.message_location + Point::new(-1, -1), chars::NW as char);
+        console.put_plain(self.message_location + Point::new(63, -1), chars::NE as char);
+        console.put_plain(self.message_location + Point::new(-1,  8), chars::SW as char);
+        console.put_plain(self.message_location + Point::new(63,  8), chars::SE as char);
 
         for x in 0..63 {
-            console.put_plain(self.message_location + Point::new(x, -1), CHAR_HLINE);
-            console.put_plain(self.message_location + Point::new(x,  8), CHAR_HLINE);
+            console.put_plain(self.message_location + Point::new(x, -1), chars::HLINE as char);
+            console.put_plain(self.message_location + Point::new(x,  8), chars::HLINE as char);
         }
 
         for y in 0..8 {
-            console.put_plain(self.message_location + Point::new(-1, y), CHAR_VLINE);
-            console.put_plain(self.message_location + Point::new(63, y), CHAR_VLINE);
+            console.put_plain(self.message_location + Point::new(-1, y), chars::VLINE as char);
+            console.put_plain(self.message_location + Point::new(63, y), chars::VLINE as char);
         }
 
         console.put_plain(self.message_location + Point::new(0, -1), 'M');
