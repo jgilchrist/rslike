@@ -4,6 +4,7 @@ pub use self::gui::GUI;
 pub use self::menu::Menu;
 
 pub mod screens;
+pub mod chars;
 
 mod colors;
 mod console;
