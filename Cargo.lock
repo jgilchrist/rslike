@@ -13,7 +13,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "tcod"
 version = "0.5.0"
-source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#86e4cf33c9faf9589e6919af4cc693762ea6a6c0"
+source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#78b219f2eb6233fb674b33d20b6e61b9f2f2535f"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "tcod-sys 2.0.5 (git+https://github.com/jgilchrist/tcod-rs?branch=chars)",
@@ -22,5 +22,5 @@ dependencies = [
 [[package]]
 name = "tcod-sys"
 version = "2.0.5"
-source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#86e4cf33c9faf9589e6919af4cc693762ea6a6c0"
+source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#78b219f2eb6233fb674b33d20b6e61b9f2f2535f"
 
