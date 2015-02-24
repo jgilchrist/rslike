@@ -4,11 +4,17 @@ use gui::{Console, Colors, Key};
 use util::units::{Direction, Point};
 
 #[allow(missing_copy_implementations)]
-pub struct GameScreen;
+pub struct GameScreen {
+    map_location: Point,
+}
 
 impl GameScreen {
     pub fn new() -> Box<Screen> {
-        Box::new(GameScreen)
+        Box::new(
+            GameScreen {
+                map_location: Point::new(16, 1)
+            }
+        )
     }
 }
 
@@ -52,7 +58,7 @@ impl Screen for GameScreen {
         let repr = game.world.player.repr;
         let pos = game.world.player.pos;
 
-        console.put_plain(pos, repr);
+        console.put_plain(self.map_location + pos, repr);
 
     }
 }
@@ -64,7 +70,7 @@ impl GameScreen {
 
         for (y, line) in map.tiles.iter().enumerate() {
             for (x, cell) in line.iter().enumerate() {
-                console.put(Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
+                console.put(self.map_location + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
     }
