@@ -88,9 +88,7 @@ impl GameScreen {
             console.put_plain(self.map_location + Point::new(63, y), chars::VLINE as char);
         }
 
-        console.put_plain(self.map_location + Point::new(0, -1), 'M');
-        console.put_plain(self.map_location + Point::new(1, -1), 'a');
-        console.put_plain(self.map_location + Point::new(2, -1), 'p');
+        console.print_plain(self.map_location + Point::new(0, -1), "Map");
 
         console.put_plain(self.info_location + Point::new(-1, -1), chars::NW as char);
         console.put_plain(self.info_location + Point::new(13, -1), chars::NE as char);
@@ -107,10 +105,7 @@ impl GameScreen {
             console.put_plain(self.info_location + Point::new(13, y), chars::VLINE as char);
         }
 
-        console.put_plain(self.info_location + Point::new(0, -1), 'I');
-        console.put_plain(self.info_location + Point::new(1, -1), 'n');
-        console.put_plain(self.info_location + Point::new(2, -1), 'f');
-        console.put_plain(self.info_location + Point::new(3, -1), 'o');
+        console.print_plain(self.info_location + Point::new(0, -1), "Info");
 
         console.put_plain(self.message_location + Point::new(-1, -1), chars::NW as char);
         console.put_plain(self.message_location + Point::new(63, -1), chars::NE as char);
@@ -127,15 +122,7 @@ impl GameScreen {
             console.put_plain(self.message_location + Point::new(63, y), chars::VLINE as char);
         }
 
-        console.put_plain(self.message_location + Point::new(0, -1), 'M');
-        console.put_plain(self.message_location + Point::new(1, -1), 'e');
-        console.put_plain(self.message_location + Point::new(2, -1), 's');
-        console.put_plain(self.message_location + Point::new(3, -1), 's');
-        console.put_plain(self.message_location + Point::new(4, -1), 'a');
-        console.put_plain(self.message_location + Point::new(5, -1), 'g');
-        console.put_plain(self.message_location + Point::new(6, -1), 'e');
-        console.put_plain(self.message_location + Point::new(7, -1), 's');
-
+        console.print_plain(self.message_location + Point::new(0, -1), "Messages");
     }
 
     #[allow(unused)]
