@@ -12,4 +12,3 @@ doctest = false
 
 [dependencies.tcod]
 git = "https://github.com/jgilchrist/tcod-rs"
-branch = "chars"

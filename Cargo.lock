@@ -2,7 +2,7 @@
 name = "rslike"
 version = "0.0.1"
 dependencies = [
- "tcod 0.5.0 (git+https://github.com/jgilchrist/tcod-rs?branch=chars)",
+ "tcod 0.5.0 (git+https://github.com/jgilchrist/tcod-rs)",
 ]
 
 [[package]]
@@ -13,14 +13,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "tcod"
 version = "0.5.0"
-source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#78b219f2eb6233fb674b33d20b6e61b9f2f2535f"
+source = "git+https://github.com/jgilchrist/tcod-rs#09a14929fb5eac3bf08fcb78d32282e7c89cbfd3"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "tcod-sys 2.0.5 (git+https://github.com/jgilchrist/tcod-rs?branch=chars)",
+ "tcod-sys 2.0.5 (git+https://github.com/jgilchrist/tcod-rs)",
 ]
 
 [[package]]
 name = "tcod-sys"
 version = "2.0.5"
-source = "git+https://github.com/jgilchrist/tcod-rs?branch=chars#78b219f2eb6233fb674b33d20b6e61b9f2f2535f"
+source = "git+https://github.com/jgilchrist/tcod-rs#09a14929fb5eac3bf08fcb78d32282e7c89cbfd3"
 
