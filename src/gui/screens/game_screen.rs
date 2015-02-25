@@ -61,14 +61,9 @@ impl Screen for GameScreen {
 
     #[allow(unused)]
     fn render(&mut self, game: &mut Game, console: &mut Console) {
-        self.draw_map(game, console);
-
-        let repr = game.world.player.repr;
-        let pos = game.world.player.pos;
-
-        console.put_plain(self.map_frame.location() + pos, repr);
-
         self.draw_borders(game, console);
+        self.draw_map(game, console);
+        self.draw_player(game, console);
     }
 }
 
@@ -113,6 +108,18 @@ impl GameScreen {
             for (x, cell) in line[self.map_view.x as usize .. self.map_view.x as usize + width].iter().enumerate() {
                 console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
+        }
+    }
+
+    #[allow(unused)]
+    fn draw_player(&self, game: &mut Game, console: &mut Console) {
+        let repr = game.world.player.repr;
+        let pos = game.world.player.pos;
+
+        let adjusted_pos = pos + self.map_frame.location() - self.map_view;
+
+        if adjusted_pos.x >= self.map_frame.location().x && adjusted_pos.y >= self.map_frame.location().y {
+            console.put_plain(self.map_frame.location() - self.map_view + pos, repr);
         }
     }
 
