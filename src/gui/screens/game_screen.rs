@@ -112,23 +112,56 @@ impl GameScreen {
     }
 
     #[allow(unused)]
-    fn draw_player(&self, game: &mut Game, console: &mut Console) {
+    fn draw_player(&mut self, game: &mut Game, console: &mut Console) {
         let repr = game.world.player.repr;
         let pos = game.world.player.pos;
 
         let adjusted_pos = pos + self.map_frame.location() - self.map_view;
+
+        if adjusted_pos.x >= self.map_frame.location().x + self.map_frame.width() - 10 {
+            if self.view_can_move_right(game) {
+                self.map_view = self.map_view.right(1);
+            }
+        }
+
+        if adjusted_pos.y >= self.map_frame.location().y + self.map_frame.height() - 5 {
+            if self.view_can_move_down(game) {
+                self.map_view = self.map_view.down(1);
+            }
+        }
+
+        if adjusted_pos.y <= self.map_frame.location().y + 5 {
+            if self.view_can_move_up(game) {
+                self.map_view = self.map_view.up(1);
+            }
+        }
+
+        if adjusted_pos.x <= self.map_frame.location().x + 10 {
+            if self.view_can_move_left(game) {
+                self.map_view = self.map_view.left(1);
+            }
+        }
 
         if adjusted_pos.x >= self.map_frame.location().x && adjusted_pos.y >= self.map_frame.location().y {
             console.put_plain(self.map_frame.location() - self.map_view + pos, repr);
         }
     }
 
-    fn view_can_move_right(&self, game: &Game) -> bool {
-        self.map_view.x + self.map_frame.width() < game.world.map.width()
+    fn view_can_move_up(&self, game: &Game) -> bool {
+        self.map_view.y  > 0
     }
+
 
     fn view_can_move_down(&self, game: &Game) -> bool {
         self.map_view.y + self.map_frame.height() < game.world.map.height()
+    }
+
+    fn view_can_move_left(&self, game: &Game) -> bool {
+        self.map_view.x > 0
+    }
+
+    fn view_can_move_right(&self, game: &Game) -> bool {
+        self.map_view.x + self.map_frame.width() < game.world.map.width()
     }
 
 }
