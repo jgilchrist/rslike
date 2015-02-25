@@ -61,7 +61,7 @@ impl Screen for GameScreen {
 
     #[allow(unused)]
     fn render(&mut self, game: &mut Game, console: &mut Console) {
-        self.render_map(game, console);
+        self.draw_map(game, console);
 
         let repr = game.world.player.repr;
         let pos = game.world.player.pos;
@@ -104,7 +104,7 @@ impl GameScreen {
     }
 
     #[allow(unused)]
-    fn render_map(&self, game: &mut Game, console: &mut Console) {
+    fn draw_map(&self, game: &mut Game, console: &mut Console) {
         let map = &(game.world.map);
 
         let (width, height) = (63, 38);
