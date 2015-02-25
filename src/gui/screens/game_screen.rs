@@ -109,8 +109,8 @@ impl GameScreen {
 
         let (width, height) = (63, 38);
 
-        for (y, line) in map.tiles[self.map_view.y as usize .. height].iter().enumerate() {
-            for (x, cell) in line[self.map_view.x as usize .. width].iter().enumerate() {
+        for (y, line) in map.tiles[self.map_view.y as usize .. self.map_view.y as usize + height].iter().enumerate() {
+            for (x, cell) in line[self.map_view.x as usize .. self.map_view.x as usize + width].iter().enumerate() {
                 console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
