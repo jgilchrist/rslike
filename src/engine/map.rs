@@ -46,4 +46,12 @@ impl Map {
         self.tiles[loc.y as usize][loc.x as usize] = tile;
     }
 
+    pub fn height(&self) -> i32 {
+        self.tiles.len() as i32
+    }
+
+    pub fn width(&self) -> i32 {
+        self.tiles[0].len() as i32
+    }
+
 }
