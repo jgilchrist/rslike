@@ -116,4 +116,12 @@ impl GameScreen {
         }
     }
 
+    fn view_can_move_right(&self, game: &Game) -> bool {
+        self.map_view.x + self.map_frame.width() < game.world.map.width()
+    }
+
+    fn view_can_move_down(&self, game: &Game) -> bool {
+        self.map_view.y + self.map_frame.height() < game.world.map.height()
+    }
+
 }
