@@ -8,6 +8,7 @@ use util::units::{Direction, Point, Size};
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
     map_frame: Rectangle,
+    map_view: Point,
     info_frame: Rectangle,
     message_frame: Rectangle,
 }
@@ -17,6 +18,7 @@ impl GameScreen {
         Box::new(
             GameScreen {
                 map_frame: Rectangle::new(Point::new(16, 1), Size::new(63, 38)),
+                map_view: Point::new(0, 0),
                 info_frame: Rectangle::new(Point::new(1, 1), Size::new(13, 48)),
                 message_frame: Rectangle::new(Point::new(16, 41), Size::new(63, 8)),
             }
@@ -107,8 +109,8 @@ impl GameScreen {
 
         let (width, height) = (63, 38);
 
-        for (y, line) in map.tiles[0..height].iter().enumerate() {
-            for (x, cell) in line[0..width].iter().enumerate() {
+        for (y, line) in map.tiles[self.map_view.y as usize .. height].iter().enumerate() {
+            for (x, cell) in line[self.map_view.x as usize .. width].iter().enumerate() {
                 console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
