@@ -54,7 +54,7 @@ impl Screen for GameScreen {
 
     #[allow(unused)]
     fn update(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
-        return None;
+        None
     }
 
     #[allow(unused)]
