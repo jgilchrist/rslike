@@ -102,10 +102,8 @@ impl GameScreen {
     fn draw_map(&self, game: &mut Game, console: &mut Console) {
         let map = &game.world.map;
 
-        let (width, height) = (63, 38);
-
-        for (y, line) in map.tiles[self.map_view.y as usize .. self.map_view.y as usize + height].iter().enumerate() {
-            for (x, cell) in line[self.map_view.x as usize .. self.map_view.x as usize + width].iter().enumerate() {
+        for (y, line) in map.tiles[self.map_view.y as usize .. self.map_view.y as usize + self.map_frame.height() as usize].iter().enumerate() {
+            for (x, cell) in line[self.map_view.x as usize .. self.map_view.x as usize + self.map_frame.width() as usize].iter().enumerate() {
                 console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
