@@ -1,4 +1,4 @@
-use engine::Game;
+use engine::{Game, MessageType};
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
@@ -152,8 +152,15 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_messages(&mut self, game: &mut Game, console: &mut Console) {
-        for (i, msg) in game.log.items().enumerate() {
-            console.print_plain(self.message_frame.location().down(i as i32), msg.text());
+        let nmessages = self.message_frame.height() as usize;
+
+        for (i, msg) in game.log.items().take(nmessages).enumerate() {
+            let message_color = match *msg.ty() {
+                MessageType::Info => Colors::white,
+                MessageType::Error => Colors::red,
+            };
+
+            console.print(self.message_frame.location().down(i as i32), msg.text(), message_color, Colors::black);
         }
     }
 
