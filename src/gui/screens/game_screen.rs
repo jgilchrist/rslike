@@ -100,7 +100,7 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_map(&self, game: &mut Game, console: &mut Console) {
-        let map = &(game.world.map);
+        let map = &game.world.map;
 
         let (width, height) = (63, 38);
 
