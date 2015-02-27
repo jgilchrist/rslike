@@ -2,6 +2,7 @@ use engine::Game;
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
+use gui::Colored;
 use util::units::{AsTuple, Direction, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
@@ -106,7 +107,7 @@ impl GameScreen {
 
         for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
             for (x, cell) in line[ux .. ux + width].iter().enumerate() {
-                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
+                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.bg_color());
             }
         }
     }

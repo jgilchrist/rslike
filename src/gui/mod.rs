@@ -10,3 +10,4 @@ mod colors;
 mod console;
 mod gui;
 mod menu;
+mod tile_colors;
