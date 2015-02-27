@@ -23,6 +23,10 @@ impl Rectangle {
         return self.location;
     }
 
+    pub fn size(&self) -> Size {
+        return self.size;
+    }
+
     pub fn width(&self) -> i32 {
         return self.size.x;
     }
