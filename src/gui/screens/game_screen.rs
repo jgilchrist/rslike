@@ -2,7 +2,7 @@ use engine::Game;
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
-use util::units::{Direction, Point, Rectangle, Size};
+use util::units::{AsTuple, Direction, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
@@ -101,8 +101,11 @@ impl GameScreen {
     fn draw_map(&self, game: &mut Game, console: &mut Console) {
         let map = &game.world.map;
 
-        for (y, line) in map.tiles[self.map_view.y as usize .. self.map_view.y as usize + self.map_frame.height() as usize].iter().enumerate() {
-            for (x, cell) in line[self.map_view.x as usize .. self.map_view.x as usize + self.map_frame.width() as usize].iter().enumerate() {
+        let (ux, uy): (usize, usize) = self.map_view.as_tuple();
+        let (width, height) = self.map_frame.size().as_tuple();
+
+        for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
+            for (x, cell) in line[ux .. ux + width].iter().enumerate() {
                 console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.b_color());
             }
         }
