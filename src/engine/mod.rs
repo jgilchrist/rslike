@@ -2,7 +2,7 @@ pub use self::actor::Actor;
 pub use self::game::Game;
 pub use self::map::Map;
 pub use self::map_builders::IntoMap;
-pub use self::messages::MessageList;
+pub use self::messages::{Message, MessageList};
 pub use self::tiles::Tile;
 pub use self::world::World;
 

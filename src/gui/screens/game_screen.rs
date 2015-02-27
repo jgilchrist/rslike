@@ -64,6 +64,7 @@ impl Screen for GameScreen {
         self.draw_borders(game, console);
         self.draw_map(game, console);
         self.draw_player(game, console);
+        self.draw_messages(game, console);
     }
 }
 
@@ -146,6 +147,13 @@ impl GameScreen {
 
         if adjusted_pos.x >= self.map_frame.location().x && adjusted_pos.y >= self.map_frame.location().y {
             console.put_plain(self.map_frame.location() - self.map_view + pos, '@');
+        }
+    }
+
+    #[allow(unused)]
+    fn draw_messages(&mut self, game: &mut Game, console: &mut Console) {
+        for (i, msg) in game.log.items().enumerate() {
+            console.print_plain(self.message_frame.location().down(i as i32), msg.text());
         }
     }
 
