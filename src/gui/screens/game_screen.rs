@@ -1,8 +1,7 @@
-use engine::{Game, MessageType};
+use engine::{Game, MessageType, Tile};
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
-use gui::Colored;
 use util::units::{AsTuple, Direction, Offset, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
@@ -110,7 +109,13 @@ impl GameScreen {
 
         for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
             for (x, cell) in line[ux .. ux + width].iter().enumerate() {
-                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, cell.bg_color());
+                let bg_color = match *cell {
+                    Tile::Empty => Colors::black,
+                    Tile::Wall => Colors::darker_grey,
+                    Tile::Floor => Colors::darkest_sepia,
+                };
+
+                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, bg_color);
             }
         }
     }
