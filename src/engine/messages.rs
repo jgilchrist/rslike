@@ -19,6 +19,10 @@ impl Message {
     pub fn text(&self) -> &str {
         &self.text
     }
+
+    pub fn ty(&self) -> &MessageType {
+        &self.ty
+    }
 }
 
 impl MessageList {
