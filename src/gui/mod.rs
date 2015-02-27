@@ -1,4 +1,4 @@
-pub use self::colors::{Color, Colors};
+pub use self::colors::{Color, Colors, Colored};
 pub use self::console::{Console, Key};
 pub use self::gui::GUI;
 pub use self::menu::Menu;
