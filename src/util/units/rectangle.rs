@@ -11,7 +11,7 @@ impl Rectangle {
         Rectangle { location: location, size: size }
     }
 
-    pub fn move_dir(&self, location: Point) -> Rectangle {
+    pub fn translate(&self, location: Point) -> Rectangle {
         Rectangle { location: self.location + location, size: self.size }
     }
 
