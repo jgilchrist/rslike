@@ -1,4 +1,4 @@
-use util::units::AsTuple;
+use util::units::{AsTuple, Offset};
 
 use std::ops::{Add, Sub};
 
@@ -26,6 +26,16 @@ impl Add for Size {
     }
 }
 
+impl Add<Offset> for Size {
+    type Output = Size;
+
+    fn add(self, other: Offset) -> Size {
+        let (ox, oy) = other.as_tuple();
+        Size { x: self.x + ox, y: self.y + oy }
+    }
+}
+
+
 impl Add<(i32, i32)> for Size {
     type Output = Size;
 
@@ -39,6 +49,15 @@ impl Sub for Size {
     type Output = Size;
 
     fn sub(self, other: Size) -> Size {
+        let (ox, oy) = other.as_tuple();
+        Size { x: self.x - ox, y: self.y - oy }
+    }
+}
+
+impl Sub<Offset> for Size {
+    type Output = Size;
+
+    fn sub(self, other: Offset) -> Size {
         let (ox, oy) = other.as_tuple();
         Size { x: self.x - ox, y: self.y - oy }
     }

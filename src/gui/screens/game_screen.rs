@@ -3,7 +3,7 @@ use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
 use gui::Colored;
-use util::units::{AsTuple, Direction, Point, Rectangle, Size};
+use util::units::{AsTuple, Direction, Offset, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
@@ -71,11 +71,9 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        self.draw_box_with_title(console, "Map", self.map_frame.translate(Point::new(-1, -1)).resize(Size::new(1, 1)));
-
-        self.draw_box_with_title(console, "Info", self.info_frame.translate(Point::new(-1, -1)).resize(Size::new(1, 1)));
-
-        self.draw_box_with_title(console, "Messages", self.message_frame.translate(Point::new(-1, -1)).resize(Size::new(1, 1)));
+        self.draw_box_with_title(console, "Map", self.map_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
+        self.draw_box_with_title(console, "Info", self.info_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
+        self.draw_box_with_title(console, "Messages", self.message_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
     }
 
     fn draw_box_with_title(&self, console: &mut Console, title: &str, rect: Rectangle) {

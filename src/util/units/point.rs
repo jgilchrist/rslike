@@ -1,4 +1,4 @@
-use util::units::{AsTuple, Direction};
+use util::units::{AsTuple, Direction, Offset};
 
 use std::ops::{Add, Sub};
 
@@ -38,6 +38,15 @@ impl Add for Point {
     }
 }
 
+impl Add<Offset> for Point {
+    type Output = Point;
+
+    fn add(self, other: Offset) -> Point {
+        let (ox, oy) = other.as_tuple();
+        Point { x: self.x + ox, y: self.y + oy }
+    }
+}
+
 impl Add<(i32, i32)> for Point {
     type Output = Point;
 
@@ -51,6 +60,15 @@ impl Sub for Point {
     type Output = Point;
 
     fn sub(self, other: Point) -> Point {
+        let (ox, oy) = other.as_tuple();
+        Point { x: self.x - ox, y: self.y - oy }
+    }
+}
+
+impl Sub<Offset> for Point {
+    type Output = Point;
+
+    fn sub(self, other: Offset) -> Point {
         let (ox, oy) = other.as_tuple();
         Point { x: self.x - ox, y: self.y - oy }
     }

@@ -1,4 +1,4 @@
-use util::units::{Point, Size};
+use util::units::{Offset, Point, Size};
 
 pub struct Rectangle {
     location: Point,
@@ -11,12 +11,12 @@ impl Rectangle {
         Rectangle { location: location, size: size }
     }
 
-    pub fn translate(&self, location: Point) -> Rectangle {
-        Rectangle { location: self.location + location, size: self.size }
+    pub fn translate(&self, offset: Offset) -> Rectangle {
+        Rectangle { location: self.location + offset, size: self.size }
     }
 
-    pub fn resize(&self, size: Size) -> Rectangle {
-        Rectangle { location: self.location, size: self.size + size }
+    pub fn resize(&self, offset: Offset) -> Rectangle {
+        Rectangle { location: self.location, size: self.size + offset }
     }
 
     pub fn location(&self) -> Point {
