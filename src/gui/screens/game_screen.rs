@@ -114,7 +114,6 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_player(&mut self, game: &mut Game, console: &mut Console) {
-        let repr = game.world.player.repr;
         let pos = game.world.player.pos;
 
         let adjusted_pos = pos + self.map_frame.location() - self.map_view;
@@ -144,7 +143,7 @@ impl GameScreen {
         }
 
         if adjusted_pos.x >= self.map_frame.location().x && adjusted_pos.y >= self.map_frame.location().y {
-            console.put_plain(self.map_frame.location() - self.map_view + pos, repr);
+            console.put_plain(self.map_frame.location() - self.map_view + pos, '@');
         }
     }
 

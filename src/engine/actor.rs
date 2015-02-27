@@ -5,18 +5,16 @@ pub struct Actor {
     pub pos: Point,
     pub health: i32,
     pub max_health: i32,
-    pub repr: char,
 }
 
 impl Actor {
 
-    pub fn new(name: &'static str, pos: Point, max_health: i32, repr: char) -> Actor {
+    pub fn new(name: &'static str, pos: Point, max_health: i32) -> Actor {
         Actor {
             name: name.to_string(),
             pos: pos,
             health: max_health,
             max_health: max_health,
-            repr: repr,
         }
     }
 

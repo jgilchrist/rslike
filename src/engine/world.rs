@@ -11,7 +11,7 @@ impl World {
 
     pub fn new() -> World {
         World {
-            player: Actor::new("Player", Point::new(10, 10), 100, '@'),
+            player: Actor::new("Player", Point::new(10, 10), 100),
             actors: Vec::new(),
             map: Map::from_file("assets/maps/test.map"),
         }
