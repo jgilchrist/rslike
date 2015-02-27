@@ -1,13 +1,11 @@
 use engine::Game;
-use gui::{Console, Key, Menu};
+use gui::{Console, Key, Menu, MenuOption};
 use gui::screens::{self, Screen, ScreenChange};
 use util::units::Point;
 
-use std::fmt;
-
 #[allow(missing_copy_implementations)]
 pub struct MenuScreen {
-    menu: Menu<MenuItem>,
+    menu: Menu<MainMenu>,
 }
 
 static LOGO: &'static str =
@@ -20,25 +18,19 @@ static LOGO: &'static str =
         #  #      # #     #  #  #  #     \n\
         #   # ##### ##### #  #   # ##### \n";
 
-enum MenuItem {
+enum MainMenu {
     StartGame,
     Exit,
-}
-
-impl fmt::Display for MenuItem {
-    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
-        match *self {
-            MenuItem::StartGame => write!(fmt, "Start Game"),
-            MenuItem::Exit => write!(fmt, "Exit Game"),
-        }
-    }
 }
 
 impl MenuScreen {
     pub fn new() -> Box<Screen> {
         Box::new(
             MenuScreen {
-                menu: Menu::new(vec![MenuItem::StartGame, MenuItem::Exit]),
+                menu: Menu::new(vec![
+                                    MenuOption(MainMenu::StartGame, "Start Game"),
+                                    MenuOption(MainMenu::Exit, "Exit Game"),
+                                ]),
             }
         )
     }
@@ -57,9 +49,9 @@ impl Screen for MenuScreen {
                     self.menu.next();
                 }
                 Key::Enter => {
-                    match *self.menu.selected() {
-                        MenuItem::StartGame => return Some(ScreenChange::AddScreen(screens::GameScreen::new())),
-                        MenuItem::Exit => return Some(ScreenChange::ExitGame),
+                    match *self.menu.selected().option() {
+                        MainMenu::StartGame => return Some(ScreenChange::AddScreen(screens::GameScreen::new())),
+                        MainMenu::Exit => return Some(ScreenChange::ExitGame),
                     }
                 },
                 _ => {}
@@ -81,8 +73,9 @@ impl Screen for MenuScreen {
 
         let menu_loc = Point::new(33, 30);
 
-        for (i, menu_item) in self.menu.items().enumerate() {
-            console.print_plain(menu_loc.right(2).down(i as i32), &format!("{}", menu_item));
+        for (i, menu_option) in self.menu.items().enumerate() {
+            console.print_plain(menu_loc.right(2).down(i as i32), menu_option.text());
+
             if self.menu.is_selected(i) {
                 console.put_plain(menu_loc.down(i as i32), '>');
             }

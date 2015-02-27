@@ -1,12 +1,24 @@
 use std::slice::Iter;
 
 pub struct Menu<T> {
-    menu_items: Vec<T>,
+    menu_items: Vec<MenuOption<T>>,
     selected: usize,
 }
 
+pub struct MenuOption<T>(pub T, pub &'static str);
+
+impl<T> MenuOption<T> {
+    pub fn option(&self) -> &T {
+        &self.0
+    }
+
+    pub fn text(&self) -> &str {
+        self.1
+    }
+}
+
 impl<T> Menu<T> {
-    pub fn new(menu_items: Vec<T>) -> Menu<T> {
+    pub fn new(menu_items: Vec<MenuOption<T>>) -> Menu<T> {
         Menu { menu_items: menu_items, selected: 0 }
     }
 
@@ -22,7 +34,7 @@ impl<T> Menu<T> {
         }
     }
 
-    pub fn selected(&self) -> &T {
+    pub fn selected(&self) -> &MenuOption<T> {
         &self.menu_items[self.selected]
     }
 
@@ -30,7 +42,7 @@ impl<T> Menu<T> {
         self.selected == index        
     }
 
-    pub fn items(&self) -> Iter<T> {
+    pub fn items(&self) -> Iter<MenuOption<T>> {
         self.menu_items.iter()
     }
 }
