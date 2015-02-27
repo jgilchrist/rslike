@@ -1,8 +1,4 @@
-pub use self::rectangle::Rectangle;
-
 pub mod units;
-
-mod rectangle;
 
 pub trait FirstLast {
     type Ret;

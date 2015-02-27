@@ -2,8 +2,7 @@ use engine::Game;
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
-use util::Rectangle;
-use util::units::{Direction, Point, Size};
+use util::units::{Direction, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
