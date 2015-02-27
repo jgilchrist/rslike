@@ -58,3 +58,9 @@ impl AsTuple<i32> for Size {
         (self.x, self.y)
     }
 }
+
+impl AsTuple<usize> for Size {
+    fn as_tuple(&self) -> (usize, usize) {
+        (self.x as usize, self.y as usize)
+    }
+}

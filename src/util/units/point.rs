@@ -70,3 +70,9 @@ impl AsTuple<i32> for Point {
         (self.x, self.y)
     }
 }
+
+impl AsTuple<usize> for Point {
+    fn as_tuple(&self) -> (usize, usize) {
+        (self.x as usize, self.y as usize)
+    }
+}
