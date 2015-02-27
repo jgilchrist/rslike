@@ -28,14 +28,6 @@ impl Tile {
         }
     }
 
-    pub fn repr(&self) -> char {
-        match *self {
-            Tile::Empty => ' ',
-            Tile::Wall => '#',
-            Tile::Floor => '.',
-        }
-    }
-
     pub fn b_color(&self) -> Color {
         match *self {
             Tile::Empty => Colors::black,
@@ -46,8 +38,14 @@ impl Tile {
 
 }
 
-impl fmt::Display for Tile {
+impl fmt::Debug for Tile {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.repr())
+        let repr = match *self {
+            Tile::Empty => ' ',
+            Tile::Wall => '#',
+            Tile::Floor => '.',
+        };
+
+        write!(f, "{}", repr)
     }
 }
