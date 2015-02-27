@@ -77,22 +77,27 @@ impl GameScreen {
     }
 
     fn draw_box_with_title(&self, console: &mut Console, title: &str, rect: Rectangle) {
-        console.put_plain(rect.location() + Point::new(0, 0), chars::NW);
-        console.put_plain(rect.location() + Point::new(rect.width(), 0), chars::NE);
-        console.put_plain(rect.location() + Point::new(0, rect.height()), chars::SW);
-        console.put_plain(rect.location() + Point::new(rect.width(), rect.height()), chars::SE);
 
-        for x in 1..rect.width() {
-            console.put_plain(rect.location() + Point::new(x, 0), chars::HLINE);
-            console.put_plain(rect.location() + Point::new(x, rect.height()), chars::HLINE);
+        let loc = rect.location();
+        let width = rect.width();
+        let height = rect.height();
+
+        console.put_plain(loc + (0, 0),             chars::NW);
+        console.put_plain(loc + (width, 0),         chars::NE);
+        console.put_plain(loc + (0, height),        chars::SW);
+        console.put_plain(loc + (width, height),    chars::SE);
+
+        for x in 1..width {
+            console.put_plain(loc + (x, 0),         chars::HLINE);
+            console.put_plain(loc + (x, height),    chars::HLINE);
         }
 
-        for y in 1..rect.height() {
-            console.put_plain(rect.location() + Point::new(0, y), chars::VLINE);
-            console.put_plain(rect.location() + Point::new(rect.width(), y), chars::VLINE);
+        for y in 1..height {
+            console.put_plain(loc + (0, y),         chars::VLINE);
+            console.put_plain(loc + (width, y),     chars::VLINE);
         }
 
-        console.print_plain(rect.location() + Point::new(1, 0), title);
+        console.print_plain(rect.location() + (1, 0), title);
     }
 
     #[allow(unused)]
