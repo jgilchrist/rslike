@@ -71,17 +71,14 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        self.draw_box(console, self.map_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
-        console.print_plain(self.map_frame.move_dir(Point::new(0, -1)).location(), "Map");
+        self.draw_box_with_title(console, "Map", self.map_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
 
-        self.draw_box(console, self.info_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
-        console.print_plain(self.info_frame.move_dir(Point::new(0, -1)).location(), "Info");
+        self.draw_box_with_title(console, "Info", self.info_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
 
-        self.draw_box(console, self.message_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
-        console.print_plain(self.message_frame.move_dir(Point::new(0, -1)).location(), "Messages");
+        self.draw_box_with_title(console, "Messages", self.message_frame.move_dir(Point::new(-1, -1)).resize(Size::new(1, 1)));
     }
 
-    fn draw_box(&self, console: &mut Console, rect: Rectangle) {
+    fn draw_box_with_title(&self, console: &mut Console, title: &str, rect: Rectangle) {
         console.put_plain(rect.location() + Point::new(0, 0), chars::NW);
         console.put_plain(rect.location() + Point::new(rect.width(), 0), chars::NE);
         console.put_plain(rect.location() + Point::new(0, rect.height()), chars::SW);
@@ -96,6 +93,8 @@ impl GameScreen {
             console.put_plain(rect.location() + Point::new(0, y), chars::VLINE);
             console.put_plain(rect.location() + Point::new(rect.width(), y), chars::VLINE);
         }
+
+        console.print_plain(rect.location() + Point::new(1, 0), title);
     }
 
     #[allow(unused)]
