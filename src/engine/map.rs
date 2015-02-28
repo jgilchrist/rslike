@@ -13,16 +13,7 @@ pub struct Map {
 impl Map {
 
     pub fn new<T>(maplike: T) -> Map where T: IntoMap {
-        let result = maplike.as_map();
-
-        let map = match result {
-            Ok(map) => map,
-            Err(msg) => {
-                panic!(msg);
-            }
-        };
-
-        map
+        maplike.as_map().unwrap()
     }
 
     pub fn from_file<T>(path: T) -> Map where T: AsPath {
