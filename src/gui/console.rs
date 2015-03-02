@@ -1,6 +1,9 @@
 use gui::{Color, Colors};
 use util::units::{AsTuple, Point, Size};
 
+// TODO: Remove this import when std::prelude contains the new path
+use std::path::Path;
+
 use tcod;
 
 #[derive(Copy, Debug, PartialEq)]
