@@ -1,3 +1,5 @@
+use util::FromChar;
+
 use std::fmt;
 
 #[derive(Clone, Copy)]
@@ -8,16 +10,6 @@ pub enum Tile {
 }
 
 impl Tile {
-
-    pub fn from_char(c: char) -> Tile {
-        match c {
-            ' ' => Tile::Empty,
-            '.' => Tile::Floor,
-            '#' => Tile::Wall,
-            _ => panic!("No valid tile for character {}", c)
-        }
-    }
-
     pub fn is_walkable(&self) -> bool {
         match *self {
             Tile::Empty => true,
@@ -25,7 +17,19 @@ impl Tile {
             Tile::Floor => true,
         }
     }
+}
 
+impl FromChar for Tile {
+    type Ret = Tile;
+
+    fn from_char(c: char) -> Tile {
+        match c {
+            ' ' => Tile::Empty,
+            '.' => Tile::Floor,
+            '#' => Tile::Wall,
+            _ => panic!("No valid tile for character {}", c)
+        }
+    }
 }
 
 impl fmt::Debug for Tile {

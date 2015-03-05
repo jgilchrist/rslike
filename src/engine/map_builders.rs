@@ -1,4 +1,5 @@
 use engine::{Tile, Map};
+use util::FromChar;
 use util::units::Size;
 
 pub trait IntoMap {

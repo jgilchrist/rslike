@@ -21,3 +21,9 @@ impl<T> FirstLast for Vec<T> {
         &mut self[len - 1]
     }
 }
+
+pub trait FromChar {
+    type Ret;
+
+    fn from_char(c: char) -> Self::Ret;
+}
