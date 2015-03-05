@@ -1,5 +1,4 @@
 [package]
-
 name = "rslike"
 version = "0.0.1"
 authors = ["Jonny Gilchrist <jonnygilchrist@gmail.com>"]
