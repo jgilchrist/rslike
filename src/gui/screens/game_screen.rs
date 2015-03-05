@@ -122,7 +122,7 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_player(&mut self, game: &mut Game, console: &mut Console) {
-        let pos = game.world.player.pos;
+        let pos = *game.world.player.pos();
 
         let adjusted_pos = pos + self.map_frame.location() - self.map_view;
 

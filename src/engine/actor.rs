@@ -11,10 +11,10 @@ use util::units::{Direction, Point};
 /// let actor = Actor::new("Dog", Point::zero(), 100);
 /// ```
 pub struct Actor {
-    pub name: String,
-    pub pos: Point,
-    pub health: i32,
-    pub max_health: i32,
+    name: String,
+    pos: Point,
+    health: i32,
+    max_health: i32,
 }
 
 impl Actor {
@@ -28,6 +28,11 @@ impl Actor {
             max_health: max_health,
         }
     }
+
+    pub fn name(&self) -> &str { &self.name }
+    pub fn pos(&self) -> &Point { &self.pos }
+    pub fn health(&self) -> i32 { self.health }
+    pub fn max_health(&self) -> i32 { self.max_health }
 
     /// Moves the actor one step in the specified `Direction`
     pub fn walk(&mut self, direction: Direction) {

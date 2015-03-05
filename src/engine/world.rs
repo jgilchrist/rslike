@@ -18,7 +18,7 @@ impl World {
     }
 
     pub fn walk(&mut self, direction: Direction) {
-        if !self.map.is_walkable(self.player.pos.move_dir(direction)) { return; }
+        if !self.map.is_walkable(self.player.pos().move_dir(direction)) { return; }
 
         self.player.walk(direction);
     }
