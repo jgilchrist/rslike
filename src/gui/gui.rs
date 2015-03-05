@@ -32,7 +32,7 @@ impl GUI {
     }
 
     pub fn run(&mut self) {
-        while !self.console.window_closed() && !self.exited() {
+        while !self.exited() {
             self.render();
             self.update();
             self.handle_input();
@@ -65,6 +65,6 @@ impl GUI {
     }
 
     pub fn exited(&self) -> bool {
-        self.state == State::Exited
+        self.console.window_closed() || self.state == State::Exited
     }
 }
