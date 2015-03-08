@@ -40,18 +40,18 @@ impl GUI {
     }
 
     fn handle_input(&mut self) {
-        let outcome = self.screens.first().input(&mut self.game, &mut self.console);
+        let outcome = self.screens.first_mut().input(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn update(&mut self) {
-        let outcome = self.screens.first().update(&mut self.game, &mut self.console);
+        let outcome = self.screens.first_mut().update(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn render(&mut self) {
         self.console.clear();
-        self.screens.first().render(&mut self.game, &mut self.console);
+        self.screens.first_mut().render(&mut self.game, &mut self.console);
         self.console.flush();
     }
 
