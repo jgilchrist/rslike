@@ -7,7 +7,7 @@ install:
     - sudo apt-get install gcc g++ make libsdl1.2-dev
 
 after_success: |
-  [ $TRAVIS_BRANCH = dev ] &&
+  [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   cargo doc &&
   echo '<meta http-equiv=refresh content="0;url=rslike/index.html">' > target/doc/index.html &&
