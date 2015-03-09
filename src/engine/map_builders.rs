@@ -1,5 +1,5 @@
 use engine::{Tile, Map};
-use util::FromChar;
+use util::{FirstLast, FromChar};
 use util::units::Size;
 
 pub trait IntoMap {
@@ -18,17 +18,23 @@ impl IntoMap for Vec<Vec<Tile>> {
     }
 }
 
-fn build_line(l: &&str) -> Vec<Tile> {
-    l.chars().map(|c| Tile::from_char(c)).collect()
-}
-
 impl IntoMap for String {
     fn as_map(self) -> MapBuildResult {
-        let lines: Vec<&str> = self.split('\n').filter(|l| !l.is_empty()).collect();
+        let lines: Vec<&str> = self.split('\n')
+                                   .filter(|l| !l.is_empty())
+                                   .collect();
 
-        if !lines.iter().all(|x| x.len() == lines[0].len()) { return Err("Different length lines") };
+        let expected_line_length = lines.first().len();
 
-        let tiles: Vec<Vec<Tile>> = lines.iter().map(build_line).collect();
+        if !lines.iter().all(|x| x.len() == expected_line_length) {
+            return Err("Different length lines")
+        }
+
+        let tiles: Vec<Vec<Tile>> = lines.iter()
+                                         .map(|l| l.chars()
+                                                   .map(|c| Tile::from_char(c))
+                                                   .collect())
+                                         .collect();
 
         Ok(Map::new(tiles))
     }
