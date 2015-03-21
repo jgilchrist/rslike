@@ -42,7 +42,7 @@ impl Map {
     }
 
     pub fn from_file<T>(path: T) -> Map where T: AsPath {
-        let mut level_file = File::open(&path).ok().expect("Could not find level file");
+        let mut level_file = File::open(path).ok().expect("Could not find level file");
 
         let mut level_string = String::new();
         level_file.read_to_string(&mut level_string).ok().expect("Could not read from level file");
