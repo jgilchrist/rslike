@@ -1,7 +1,7 @@
 use engine::{IntoMap, Tile};
 use util::units::{Point, Size};
 
-use std::path::AsPath;
+use std::path::Path;
 use std::fs::File;
 use std::io::Read;
 
@@ -41,7 +41,7 @@ impl Map {
         maplike.as_map().unwrap()
     }
 
-    pub fn from_file<T>(path: T) -> Map where T: AsPath {
+    pub fn from_file<T>(path: T) -> Map where T: AsRef<Path> {
         let mut level_file = File::open(path).ok().expect("Could not find level file");
 
         let mut level_string = String::new();

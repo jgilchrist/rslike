@@ -1,4 +1,4 @@
-#![feature(std_misc)]
+#![feature(convert)]
 
 extern crate tcod;
 
