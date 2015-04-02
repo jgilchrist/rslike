@@ -104,8 +104,8 @@ impl GameScreen {
     fn draw_map(&self, game: &mut Game, console: &mut Console) {
         let map = &game.world.map;
 
-        let (ux, uy): (usize, usize) = self.map_view.as_tuple();
-        let (width, height) = self.map_frame.size().as_tuple();
+        let (ux, uy) = self.map_view.as_tuple();
+        let (width, height) : (usize, usize) = self.map_frame.size().as_tuple();
 
         for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
             for (x, cell) in line[ux .. ux + width].iter().enumerate() {

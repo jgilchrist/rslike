@@ -21,7 +21,7 @@ impl Add for Size {
     type Output = Size;
 
     fn add(self, other: Size) -> Size {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Size { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -30,7 +30,7 @@ impl Add<Offset> for Size {
     type Output = Size;
 
     fn add(self, other: Offset) -> Size {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Size { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -40,7 +40,7 @@ impl Add<(i32, i32)> for Size {
     type Output = Size;
 
     fn add(self, other: (i32, i32)) -> Size {
-        let (ox, oy) = other;
+        let (ox, oy) : (i32, i32) = other;
         Size { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -49,7 +49,7 @@ impl Sub for Size {
     type Output = Size;
 
     fn sub(self, other: Size) -> Size {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Size { x: self.x - ox, y: self.y - oy }
     }
 }
@@ -58,7 +58,7 @@ impl Sub<Offset> for Size {
     type Output = Size;
 
     fn sub(self, other: Offset) -> Size {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Size { x: self.x - ox, y: self.y - oy }
     }
 }

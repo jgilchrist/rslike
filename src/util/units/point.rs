@@ -33,7 +33,7 @@ impl Add for Point {
     type Output = Point;
 
     fn add(self, other: Point) -> Point {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -42,7 +42,7 @@ impl Add<Offset> for Point {
     type Output = Point;
 
     fn add(self, other: Offset) -> Point {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Point { x: self.x + ox, y: self.y + oy }
     }
 }
@@ -60,7 +60,7 @@ impl Sub for Point {
     type Output = Point;
 
     fn sub(self, other: Point) -> Point {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Point { x: self.x - ox, y: self.y - oy }
     }
 }
@@ -69,7 +69,7 @@ impl Sub<Offset> for Point {
     type Output = Point;
 
     fn sub(self, other: Offset) -> Point {
-        let (ox, oy) = other.as_tuple();
+        let (ox, oy) : (i32, i32) = other.as_tuple();
         Point { x: self.x - ox, y: self.y - oy }
     }
 }
