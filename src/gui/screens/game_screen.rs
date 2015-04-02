@@ -1,4 +1,4 @@
-use engine::{Game, MessageType, Tile};
+use engine::{Game, Command, MessageType, Tile};
 use gui::screens::{self, Screen, ScreenChange};
 use gui::{Console, Colors, Key};
 use gui::chars;
@@ -32,16 +32,16 @@ impl Screen for GameScreen {
         if let Some(key) = console.check_for_keypress() {
             match key {
                 Key::Up => {
-                    game.world.walk(Direction::Up);
+                    game.do_command(Command::Walk(Direction::Up));
                 },
                 Key::Down => {
-                    game.world.walk(Direction::Down);
+                    game.do_command(Command::Walk(Direction::Down));
                 },
                 Key::Left => {
-                    game.world.walk(Direction::Left);
+                    game.do_command(Command::Walk(Direction::Left));
                 },
                 Key::Right => {
-                    game.world.walk(Direction::Right);
+                    game.do_command(Command::Walk(Direction::Right));
                 },
                 Key::Escape => {
                     return Some(ScreenChange::AddScreen(screens::PauseScreen::new()));
@@ -55,6 +55,7 @@ impl Screen for GameScreen {
 
     #[allow(unused)]
     fn update(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
+        game.step();
         None
     }
 
