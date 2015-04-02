@@ -1,5 +1,3 @@
-#![feature(convert)]
-
 extern crate tcod;
 
 pub mod engine;
