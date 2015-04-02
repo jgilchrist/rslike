@@ -6,20 +6,32 @@ use util::units::{AsTuple, Direction, Offset, Point, Rectangle, Size};
 
 #[allow(missing_copy_implementations)]
 pub struct GameScreen {
-    map_frame: Rectangle,
+    frames: Frames,
     map_view: Point,
-    info_frame: Rectangle,
-    message_frame: Rectangle,
+}
+
+struct Frames {
+    map: Rectangle,
+    info: Rectangle,
+    messages: Rectangle,
 }
 
 impl GameScreen {
     pub fn new() -> Box<Screen> {
+        let info_frame_location = Point::new(1, 1);
+        let map_frame_location = Point::new(16, 1);
+        let message_frame_location = Point::new(16, 41);
+
+        let frames = Frames {
+            map: Rectangle::new(map_frame_location, Size::new(63, 38)),
+            info: Rectangle::new(info_frame_location, Size::new(13, 48)),
+            messages: Rectangle::new(message_frame_location, Size::new(63, 8)),
+        };
+
         Box::new(
             GameScreen {
-                map_frame: Rectangle::new(Point::new(16, 1), Size::new(63, 38)),
+                frames: frames,
                 map_view: Point::new(0, 0),
-                info_frame: Rectangle::new(Point::new(1, 1), Size::new(13, 48)),
-                message_frame: Rectangle::new(Point::new(16, 41), Size::new(63, 8)),
             }
         )
     }
@@ -72,9 +84,9 @@ impl GameScreen {
 
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
-        self.draw_box_with_title(console, "Map", self.map_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
-        self.draw_box_with_title(console, "Info", self.info_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
-        self.draw_box_with_title(console, "Messages", self.message_frame.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
+        self.draw_box_with_title(console, "Map", self.frames.map.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
+        self.draw_box_with_title(console, "Info", self.frames.info.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
+        self.draw_box_with_title(console, "Messages", self.frames.messages.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
     }
 
     fn draw_box_with_title(&self, console: &mut Console, title: &str, rect: Rectangle) {
@@ -106,7 +118,7 @@ impl GameScreen {
         let map = &game.world.map;
 
         let (ux, uy) = self.map_view.as_tuple();
-        let (width, height) : (usize, usize) = self.map_frame.size().as_tuple();
+        let (width, height) : (usize, usize) = self.frames.map.size().as_tuple();
 
         for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
             for (x, cell) in line[ux .. ux + width].iter().enumerate() {
@@ -116,7 +128,7 @@ impl GameScreen {
                     Tile::Floor => Colors::darkest_sepia,
                 };
 
-                console.put(self.map_frame.location() + Point::new(x as i32, y as i32), ' ', Colors::white, bg_color);
+                console.put(self.frames.map.location() + Point::new(x as i32, y as i32), ' ', Colors::white, bg_color);
             }
         }
     }
@@ -125,40 +137,40 @@ impl GameScreen {
     fn draw_player(&mut self, game: &mut Game, console: &mut Console) {
         let pos = *game.world.player.pos();
 
-        let adjusted_pos = pos + self.map_frame.location() - self.map_view;
+        let adjusted_pos = pos + self.frames.map.location() - self.map_view;
 
-        if adjusted_pos.x >= self.map_frame.location().x + self.map_frame.width() - 10 {
+        if adjusted_pos.x >= self.frames.map.location().x + self.frames.map.width() - 10 {
             if self.view_can_move_right(game) {
                 self.map_view = self.map_view.right(1);
             }
         }
 
-        if adjusted_pos.y >= self.map_frame.location().y + self.map_frame.height() - 5 {
+        if adjusted_pos.y >= self.frames.map.location().y + self.frames.map.height() - 5 {
             if self.view_can_move_down(game) {
                 self.map_view = self.map_view.down(1);
             }
         }
 
-        if adjusted_pos.y <= self.map_frame.location().y + 5 {
+        if adjusted_pos.y <= self.frames.map.location().y + 5 {
             if self.view_can_move_up(game) {
                 self.map_view = self.map_view.up(1);
             }
         }
 
-        if adjusted_pos.x <= self.map_frame.location().x + 10 {
+        if adjusted_pos.x <= self.frames.map.location().x + 10 {
             if self.view_can_move_left(game) {
                 self.map_view = self.map_view.left(1);
             }
         }
 
-        if adjusted_pos.x >= self.map_frame.location().x && adjusted_pos.y >= self.map_frame.location().y {
-            console.put_plain(self.map_frame.location() - self.map_view + pos, '@');
+        if adjusted_pos.x >= self.frames.map.location().x && adjusted_pos.y >= self.frames.map.location().y {
+            console.put_plain(self.frames.map.location() - self.map_view + pos, '@');
         }
     }
 
     #[allow(unused)]
     fn draw_messages(&mut self, game: &mut Game, console: &mut Console) {
-        let nmessages = self.message_frame.height() as usize;
+        let nmessages = self.frames.messages.height() as usize;
 
         for (i, msg) in game.log.items().take(nmessages).enumerate() {
             let message_color = match *msg.ty() {
@@ -166,7 +178,7 @@ impl GameScreen {
                 MessageType::Error => Colors::red,
             };
 
-            console.print(self.message_frame.location().down(i as i32), msg.text(), message_color, Colors::black);
+            console.print(self.frames.messages.location().down(i as i32), msg.text(), message_color, Colors::black);
         }
     }
 
@@ -177,7 +189,7 @@ impl GameScreen {
 
     #[allow(unused)]
     fn view_can_move_down(&self, game: &Game) -> bool {
-        self.map_view.y + self.map_frame.height() < game.world.map.height()
+        self.map_view.y + self.frames.map.height() < game.world.map.height()
     }
 
     #[allow(unused)]
@@ -187,7 +199,7 @@ impl GameScreen {
 
     #[allow(unused)]
     fn view_can_move_right(&self, game: &Game) -> bool {
-        self.map_view.x + self.map_frame.width() < game.world.map.width()
+        self.map_view.x + self.frames.map.width() < game.world.map.width()
     }
 
 }
