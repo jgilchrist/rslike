@@ -2,7 +2,7 @@ use util::units::{AsTuple, Offset};
 
 use std::ops::{Add, Sub};
 
-#[derive(Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Size {
     pub x: i32,
     pub y: i32

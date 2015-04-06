@@ -6,7 +6,7 @@ use std::path::Path;
 
 use tcod;
 
-#[derive(Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Key {
     Up,
     Down,
