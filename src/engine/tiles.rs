@@ -25,7 +25,7 @@ impl FromChar for Tile {
     fn from_char(c: char) -> Tile {
         match c {
             ' ' => Tile::Empty,
-            '.' => Tile::Floor,
+            '.' | '@' => Tile::Floor,
             '#' => Tile::Wall,
             _ => panic!("No valid tile for character {}", c)
         }

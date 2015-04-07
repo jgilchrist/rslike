@@ -1,5 +1,5 @@
 use engine::{Actor, Map};
-use util::units::{Direction, Point};
+use util::units::Direction;
 
 pub struct World {
     pub player: Actor,
@@ -10,10 +10,12 @@ pub struct World {
 impl World {
 
     pub fn new() -> World {
+        let map = Map::from_file("assets/maps/test.map");
+
         World {
-            player: Actor::new("Player", Point::new(10, 10), 100),
+            player: Actor::new("Player", map.starting_position, 100),
             actors: Vec::new(),
-            map: Map::from_file("assets/maps/test.map"),
+            map: map,
         }
     }
 
