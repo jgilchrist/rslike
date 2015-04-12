@@ -25,7 +25,7 @@ impl Console {
 
     pub fn new(size: Size) -> Console {
         tcod::system::set_fps(60);
-        tcod::Console::set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::FONT_LAYOUT_ASCII_INROW | tcod::FONT_TYPE_GREYSCALE, 0, 0);
+        tcod::Console::set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::console::FONT_LAYOUT_ASCII_INROW | tcod::console::FONT_TYPE_GREYSCALE, 0, 0);
 
         let (width, height) = size.as_tuple();
         let console = tcod::Console::init_root(width, height, "rslike", false);
@@ -73,17 +73,17 @@ impl Console {
     }
 
     pub fn check_for_keypress(&mut self) -> Option<Key> {
-        let check_key = tcod::Console::check_for_keypress(tcod::KEY_PRESSED);
+        let check_key = tcod::Console::check_for_keypress(tcod::input::KEY_PRESSED);
 
         match check_key {
             Some(keypress) => {
                 match keypress.key {
-                    tcod::Key::Special(tcod::KeyCode::Up) => Some(Key::Up),
-                    tcod::Key::Special(tcod::KeyCode::Down) => Some(Key::Down),
-                    tcod::Key::Special(tcod::KeyCode::Left) => Some(Key::Left),
-                    tcod::Key::Special(tcod::KeyCode::Right) => Some(Key::Right),
-                    tcod::Key::Special(tcod::KeyCode::Escape) => Some(Key::Escape),
-                    tcod::Key::Special(tcod::KeyCode::Enter) => Some(Key::Enter),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Up) => Some(Key::Up),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Down) => Some(Key::Down),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Left) => Some(Key::Left),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Right) => Some(Key::Right),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Escape) => Some(Key::Escape),
+                    tcod::input::Key::Special(tcod::input::KeyCode::Enter) => Some(Key::Enter),
                     _ => None
                 }
             }
