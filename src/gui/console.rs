@@ -5,6 +5,7 @@ use util::units::{AsTuple, Point, Size};
 use std::path::Path;
 
 use tcod;
+use tcod::Console as TCODConsole;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Key {
@@ -17,7 +18,7 @@ pub enum Key {
 }
 
 pub struct Console {
-    console: tcod::Console,
+    console: tcod::RootConsole,
     size: Size,
 }
 
@@ -25,10 +26,10 @@ impl Console {
 
     pub fn new(size: Size) -> Console {
         tcod::system::set_fps(60);
-        tcod::Console::set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::console::FONT_LAYOUT_ASCII_INROW | tcod::console::FONT_TYPE_GREYSCALE, 0, 0);
 
         let (width, height) = size.as_tuple();
-        let console = tcod::Console::init_root(width, height, "rslike", false);
+        let mut console = tcod::RootConsole::init(width, height, "rslike", false);
+        console.set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::console::FONT_LAYOUT_ASCII_INROW | tcod::console::FONT_TYPE_GREYSCALE, 0, 0);
 
         Console {
             console: console,
@@ -69,11 +70,11 @@ impl Console {
     }
 
     pub fn flush(&mut self) {
-        tcod::Console::flush();
+        self.console.flush();
     }
 
     pub fn check_for_keypress(&mut self) -> Option<Key> {
-        let check_key = tcod::Console::check_for_keypress(tcod::input::KEY_PRESSED);
+        let check_key = self.console.check_for_keypress(tcod::input::KEY_PRESSED);
 
         match check_key {
             Some(keypress) => {
@@ -96,7 +97,7 @@ impl Console {
     }
 
     pub fn window_closed(&self) -> bool {
-        tcod::Console::window_closed()
+        self.console.window_closed()
     }
 
 }
