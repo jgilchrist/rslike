@@ -123,12 +123,12 @@ impl GameScreen {
         for (y, line) in map.tiles[uy .. uy + height].iter().enumerate() {
             for (x, cell) in line[ux .. ux + width].iter().enumerate() {
                 let bg_color = match *cell {
-                    Tile::Empty => Colors::black,
-                    Tile::Wall => Colors::darker_grey,
-                    Tile::Floor => Colors::darkest_sepia,
+                    Tile::Empty => Colors::BLACK,
+                    Tile::Wall => Colors::DARKER_GREY,
+                    Tile::Floor => Colors::DARKEST_SEPIA,
                 };
 
-                console.put(self.frames.map.location() + Point::new(x as i32, y as i32), ' ', Colors::white, bg_color);
+                console.put(self.frames.map.location() + Point::new(x as i32, y as i32), ' ', Colors::WHITE, bg_color);
             }
         }
     }
@@ -174,11 +174,11 @@ impl GameScreen {
 
         for (i, msg) in game.log.items().take(nmessages).enumerate() {
             let message_color = match *msg.ty() {
-                MessageType::Info => Colors::white,
-                MessageType::Error => Colors::red,
+                MessageType::Info => Colors::WHITE,
+                MessageType::Error => Colors::RED,
             };
 
-            console.print(self.frames.messages.location().down(i as i32), msg.text(), message_color, Colors::black);
+            console.print(self.frames.messages.location().down(i as i32), msg.text(), message_color, Colors::BLACK);
         }
     }
 

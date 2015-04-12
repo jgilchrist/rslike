@@ -57,8 +57,8 @@ impl Console {
         self.console.set_default_background(b_color);
         self.console.set_default_foreground(f_color);
         self.console.print_ex(pos.x, pos.y, tcod::BackgroundFlag::None, tcod::TextAlignment::Left, text);
-        self.console.set_default_background(Colors::black);
-        self.console.set_default_foreground(Colors::white);
+        self.console.set_default_background(Colors::BLACK);
+        self.console.set_default_foreground(Colors::WHITE);
     }
 
     pub fn print_align(&mut self, pos: Point, text: &str, alignment: tcod::TextAlignment) {
