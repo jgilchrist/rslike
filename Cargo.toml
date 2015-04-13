@@ -16,4 +16,4 @@ doctest = false
 
 [dependencies.tcod]
 git = "https://github.com/jgilchrist/tcod-rs"
-rev = "797c0d2"
+branch = "root-initialiser"

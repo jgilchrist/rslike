@@ -1,9 +1,6 @@
 use gui::{Color, Colors};
 use util::units::{AsTuple, Point, Size};
 
-// TODO: Remove this import when std::prelude contains the new path
-use std::path::Path;
-
 use tcod;
 use tcod::Console as TCODConsole;
 
@@ -28,8 +25,12 @@ impl Console {
         tcod::system::set_fps(60);
 
         let (width, height) = size.as_tuple();
-        let mut console = tcod::RootConsole::init(width, height, "rslike", false);
-        console.set_custom_font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::console::FONT_LAYOUT_ASCII_INROW | tcod::console::FONT_TYPE_GREYSCALE, 0, 0);
+        let console = tcod::RootConsole::initializer()
+                        .size(width, height)
+                        .title("rslike")
+                        .font("assets/fonts/terminal12x12_gs_ro.png", tcod::FontLayout::AsciiInRow)
+                        .font_type(tcod::FontType::Greyscale)
+                        .init();
 
         Console {
             console: console,
