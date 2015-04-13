@@ -1,5 +1,5 @@
 use engine::Tile;
-use util::{FirstLast, FromChar};
+use util::FromChar;
 use util::units::{Point, Size};
 
 use std::path::Path;
@@ -21,7 +21,7 @@ impl Map {
                                    .filter(|l| !l.is_empty())
                                    .collect();
 
-        let expected_line_length = lines.first().len();
+        let expected_line_length = lines.first().expect("Map string contained no lines").len();
 
         if !lines.iter().all(|x| x.len() == expected_line_length) {
             panic!("Different length lines in level string")
