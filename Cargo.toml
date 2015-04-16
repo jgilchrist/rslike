@@ -11,8 +11,6 @@ doctest = false
 
 [lib]
 name = "rslike"
-# TODO: re-enable doctests when linking issue is fixed
-doctest = false
 
 [dependencies.tcod]
 git = "https://github.com/jgilchrist/tcod-rs"
