@@ -1,6 +1,6 @@
 use util::units::{Direction, Point};
 
-/// A single actor in the game.
+/// A single actor in the game
 ///
 /// # Example
 ///
@@ -19,7 +19,7 @@ pub struct Actor {
 
 impl Actor {
 
-    /// Creates a new actor.
+    /// Creates a new actor
     pub fn new(name: &'static str, pos: Point, max_health: i32) -> Actor {
         Actor {
             name: name.to_string(),
@@ -39,18 +39,22 @@ impl Actor {
         self.pos = self.pos.move_dir(direction);
     }
 
+    /// Returns true if the actor's health is equal to or below zero
     pub fn is_dead(&self) -> bool {
         self.health <= 0
     }
 
+    /// Reduces the actor's health by a specified amount
     pub fn hurt(&mut self, amount: i32) {
         self.health -= amount;
     }
 
+    /// Increases the actor's health by a specified amount
     pub fn heal(&mut self, amount: i32) {
         self.health += amount;
     }
 
+    /// Reduces the actor's health to zero
     pub fn kill(&mut self) {
         self.health = 0;
     }
