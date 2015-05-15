@@ -4,6 +4,8 @@ use util::units::{AsTuple, Point, Size};
 use tcod;
 use tcod::Console as TCODConsole;
 
+use std::path::Path;
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Key {
     Up,
@@ -28,7 +30,7 @@ impl Console {
         let console = tcod::RootConsole::initializer()
                         .size(width, height)
                         .title("rslike")
-                        .font("assets/fonts/terminal12x12_gs_ro.png", tcod::FontLayout::AsciiInRow)
+                        .font(Path::new("assets/fonts/terminal12x12_gs_ro.png"), tcod::FontLayout::AsciiInRow)
                         .font_type(tcod::FontType::Greyscale)
                         .init();
 
