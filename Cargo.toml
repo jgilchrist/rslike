@@ -9,8 +9,5 @@ doc = false
 test = false
 doctest = false
 
-[lib]
-name = "rslike"
-
 [dependencies.tcod]
 git = "https://github.com/jgilchrist/tcod-rs"
