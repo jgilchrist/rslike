@@ -2,7 +2,7 @@
 name = "rslike"
 version = "0.0.1"
 dependencies = [
- "tcod 0.6.0 (git+https://github.com/jgilchrist/tcod-rs)",
+ "tcod 0.7.0 (git+https://github.com/jgilchrist/tcod-rs)",
 ]
 
 [[package]]
@@ -12,7 +12,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "gcc"
-version = "0.3.5"
+version = "0.3.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "lazy_static"
+version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -22,29 +27,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "tcod"
-version = "0.6.0"
-source = "git+https://github.com/jgilchrist/tcod-rs#4c166147291ceacc93cf578968dcd9e06a9f897c"
+version = "0.7.0"
+source = "git+https://github.com/jgilchrist/tcod-rs#b6acc6327eb1c1d2328776873c328bdec1fd06c8"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "tcod-sys 2.0.11 (git+https://github.com/jgilchrist/tcod-rs)",
- "time 0.1.25 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tcod-sys 2.0.12 (git+https://github.com/jgilchrist/tcod-rs)",
+ "time 0.1.26 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "tcod-sys"
-version = "2.0.11"
-source = "git+https://github.com/jgilchrist/tcod-rs#4c166147291ceacc93cf578968dcd9e06a9f897c"
+version = "2.0.12"
+source = "git+https://github.com/jgilchrist/tcod-rs#b6acc6327eb1c1d2328776873c328bdec1fd06c8"
 dependencies = [
  "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "time"
-version = "0.1.25"
+version = "0.1.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "gcc 0.3.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gcc 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
