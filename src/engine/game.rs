@@ -1,10 +1,10 @@
-use engine::{MessageList, World};
+use engine::World;
+use engine::log;
 use util::units::Direction;
 
 /// The entire game state.
 pub struct Game {
     pub world: World,
-    pub log: MessageList,
 }
 
 pub enum Command {
@@ -17,7 +17,6 @@ impl Game {
     pub fn new() -> Game {
         Game {
             world: World::new(),
-            log: MessageList::new(),
         }
     }
 

@@ -1,8 +1,15 @@
 use std::string::String;
 use std::slice::Iter;
+use std::cell::RefCell;
 
-pub struct MessageList {
-    messages: Vec<Message>,
+thread_local!(pub static LOG: RefCell<MessageList> = RefCell::new(MessageList::new()));
+
+pub fn info(text: &str) {
+    LOG.with(|w| w.borrow_mut().info(text));
+}
+
+pub fn error(text: &str) {
+    LOG.with(|w| w.borrow_mut().error(text));
 }
 
 pub enum MessageType {
@@ -23,6 +30,10 @@ impl Message {
     pub fn ty(&self) -> &MessageType {
         &self.ty
     }
+}
+
+pub struct MessageList {
+    messages: Vec<Message>,
 }
 
 impl MessageList {
