@@ -1,7 +1,8 @@
 language: rust
 
-before_install:
-    - sudo apt-get update
+sudo: false
 
-install:
-    - sudo apt-get install gcc g++ make libsdl1.2-dev
+addons:
+    apt:
+        packages:
+            libsdl1.2-dev
