@@ -1,8 +1,10 @@
 language: rust
 
+rust: nightly
+
 sudo: false
 
 addons:
-    apt:
-        packages:
-            libsdl1.2-dev
+  apt:
+    packages:
+      libsdl1.2-dev
