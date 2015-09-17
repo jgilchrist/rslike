@@ -3,6 +3,8 @@ use util::units::{AsTuple, Point, Size};
 
 use tcod;
 use tcod::Console as TCODConsole;
+use tcod::input::Key as TKey;
+use tcod::input::KeyCode as TKeyCode;
 
 use std::path::Path;
 
@@ -14,6 +16,7 @@ pub enum Key {
     Right,
     Escape,
     Enter,
+    Char(char)
 }
 
 pub struct Console {
@@ -77,21 +80,21 @@ impl Console {
     }
 
     pub fn check_for_keypress(&mut self) -> Option<Key> {
-        let check_key = self.console.check_for_keypress(tcod::input::KEY_PRESSED);
+        let check_keypress = self.console.check_for_keypress(tcod::input::KEY_PRESSED);
 
-        match check_key {
-            Some(keypress) => {
-                match keypress.key {
-                    tcod::input::Key::Special(tcod::input::KeyCode::Up) => Some(Key::Up),
-                    tcod::input::Key::Special(tcod::input::KeyCode::Down) => Some(Key::Down),
-                    tcod::input::Key::Special(tcod::input::KeyCode::Left) => Some(Key::Left),
-                    tcod::input::Key::Special(tcod::input::KeyCode::Right) => Some(Key::Right),
-                    tcod::input::Key::Special(tcod::input::KeyCode::Escape) => Some(Key::Escape),
-                    tcod::input::Key::Special(tcod::input::KeyCode::Enter) => Some(Key::Enter),
-                    _ => None
-                }
+        if let Some(keypress) = check_keypress {
+            match keypress {
+                TKey { code: TKeyCode::Up, .. } => Some(Key::Up),
+                TKey { code: TKeyCode::Down, .. } => Some(Key::Down),
+                TKey { code: TKeyCode::Left, .. } => Some(Key::Left),
+                TKey { code: TKeyCode::Right, .. } => Some(Key::Right),
+                TKey { code: TKeyCode::Escape, .. } => Some(Key::Escape),
+                TKey { code: TKeyCode::Enter, .. } => Some(Key::Enter),
+                TKey { code: TKeyCode::Char, .. } => Some(Key::Char(keypress.printable)),
+                _ => None
             }
-            _ => None
+        } else {
+            None
         }
     }
 
