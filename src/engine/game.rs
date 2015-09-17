@@ -1,5 +1,5 @@
 use engine::World;
-use engine::log;
+
 use util::units::Direction;
 
 /// The entire game state.
