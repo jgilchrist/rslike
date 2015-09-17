@@ -1,8 +1,12 @@
 use engine::Game;
 use gui::Console;
 
-pub use self::menu_screen::MenuScreen;
+mod game_screen;
+mod menu_screen;
+mod pause_screen;
+
 pub use self::game_screen::GameScreen;
+pub use self::menu_screen::MenuScreen;
 pub use self::pause_screen::PauseScreen;
 
 pub trait Screen {
@@ -16,7 +20,3 @@ pub enum ScreenChange {
     RemoveScreen,
     ExitGame,
 }
-
-mod menu_screen;
-mod game_screen;
-mod pause_screen;
