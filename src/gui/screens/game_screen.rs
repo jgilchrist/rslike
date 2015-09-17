@@ -50,6 +50,9 @@ impl Screen for GameScreen {
                 Key::Escape => {
                     return Some(ScreenChange::AddScreen(screens::PauseScreen::new()));
                 },
+                Key::Char('i') => {
+                    return Some(ScreenChange::AddScreen(screens::InventoryScreen::new()));
+                },
                 _ => {}
             }
         }
