@@ -28,8 +28,8 @@ impl MenuScreen {
         Box::new(
             MenuScreen {
                 menu: Menu::new(vec![
-                                    MenuOption(MainMenu::StartGame, "Start Game"),
-                                    MenuOption(MainMenu::Exit, "Exit Game"),
+                                    MenuOption("Start Game", MainMenu::StartGame),
+                                    MenuOption("Exit Game", MainMenu::Exit),
                                 ]),
             }
         )

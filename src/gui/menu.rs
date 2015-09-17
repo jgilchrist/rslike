@@ -5,16 +5,17 @@ pub struct Menu<T> {
     selected: usize,
 }
 
-pub struct MenuOption<T>(pub T, pub &'static str);
+pub struct MenuOption<T>(pub &'static str, pub T);
 
 impl<T> MenuOption<T> {
-    pub fn option(&self) -> &T {
+    pub fn text(&self) -> &str {
         &self.0
     }
 
-    pub fn text(&self) -> &str {
-        self.1
+    pub fn option(&self) -> &T {
+        &self.1
     }
+
 }
 
 impl<T> Menu<T> {

@@ -17,8 +17,8 @@ impl PauseScreen {
         Box::new(
             PauseScreen {
                 menu: Menu::new(vec![
-                                    MenuOption(PauseMenu::Resume, "Resume Game"),
-                                    MenuOption(PauseMenu::Exit, "Exit Game"),
+                                    MenuOption("Resume Game", PauseMenu::Resume),
+                                    MenuOption("Exit Game", PauseMenu::Exit),
                                 ]),
             }
         )
