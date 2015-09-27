@@ -41,9 +41,7 @@ impl Console {
             size: size,
         }
     }
-}
 
-impl Console {
     pub fn put_plain(&mut self, pos: Point, c: char) {
         self.console.put_char(pos.x, pos.y, c, tcod::BackgroundFlag::None);
     }
