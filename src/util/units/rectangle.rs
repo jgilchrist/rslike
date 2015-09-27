@@ -1,5 +1,6 @@
 use util::units::{Offset, Point, Size};
 
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Rectangle {
     location: Point,
     size: Size,
@@ -35,6 +36,7 @@ impl Rectangle {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BorderedRectangle {
     rect: Rectangle,
 }
