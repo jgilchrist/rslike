@@ -7,6 +7,7 @@ pub use self::menu::{Menu, MenuOption};
 
 pub mod screens;
 pub mod chars;
+pub mod primitives;
 
 mod colors;
 mod console;
