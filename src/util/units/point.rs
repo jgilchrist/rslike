@@ -9,7 +9,6 @@ pub struct Point {
 }
 
 impl Point {
-
     pub fn new(x: i32, y: i32) -> Point {
         Point { x: x, y: y }
     }
@@ -26,7 +25,6 @@ impl Point {
     pub fn move_dir(&self, dir: Direction) -> Point {
         *self + dir.as_tuple()
     }
-
 }
 
 impl Add for Point {

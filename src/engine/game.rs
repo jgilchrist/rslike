@@ -12,7 +12,6 @@ pub enum Command {
 }
 
 impl Game {
-
     /// Creates a new game.
     pub fn new() -> Game {
         Game {
@@ -31,5 +30,4 @@ impl Game {
     pub fn step(&mut self) {
 
     }
-
 }

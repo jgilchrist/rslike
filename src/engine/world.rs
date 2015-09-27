@@ -8,7 +8,6 @@ pub struct World {
 }
 
 impl World {
-
     pub fn new() -> World {
         let map = Map::from_file("assets/maps/test.map");
 
@@ -24,5 +23,4 @@ impl World {
 
         self.player.walk(direction);
     }
-
 }

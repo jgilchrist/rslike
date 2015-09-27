@@ -9,12 +9,9 @@ pub struct Size {
 }
 
 impl Size {
-
     pub fn new(x: i32, y: i32) -> Size {
         Size { x: x, y: y }
     }
-
-
 }
 
 impl Add for Size {

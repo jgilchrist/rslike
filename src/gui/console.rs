@@ -25,7 +25,6 @@ pub struct Console {
 }
 
 impl Console {
-
     pub fn new(size: Size) -> Console {
         tcod::system::set_fps(60);
 
@@ -42,11 +41,9 @@ impl Console {
             size: size,
         }
     }
-
 }
 
 impl Console {
-
     pub fn put_plain(&mut self, pos: Point, c: char) {
         self.console.put_char(pos.x, pos.y, c, tcod::BackgroundFlag::None);
     }
@@ -105,5 +102,4 @@ impl Console {
     pub fn window_closed(&self) -> bool {
         self.console.window_closed()
     }
-
 }

@@ -18,7 +18,6 @@ pub struct Actor {
 }
 
 impl Actor {
-
     /// Creates a new actor
     pub fn new(name: &'static str, pos: Point, max_health: i32) -> Actor {
         Actor {
@@ -58,5 +57,4 @@ impl Actor {
     pub fn kill(&mut self) {
         self.health = 0;
     }
-
 }

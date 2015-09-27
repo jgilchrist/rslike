@@ -39,7 +39,6 @@ impl GameScreen {
 }
 
 impl Screen for GameScreen {
-
     #[allow(unused)]
     fn input(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         if let Some(key) = console.check_for_keypress() {
@@ -82,7 +81,6 @@ impl Screen for GameScreen {
 }
 
 impl GameScreen {
-
     #[allow(unused)]
     fn draw_borders(&self, game: &mut Game, console: &mut Console) {
         self.draw_box_with_title(console, "Map", self.frames.map.translate(Offset::new(-1, -1)).resize(Offset::new(1, 1)));
@@ -204,5 +202,4 @@ impl GameScreen {
     fn view_can_move_right(&self, game: &Game) -> bool {
         self.map_view.x + self.frames.map.width() < game.world.map.width()
     }
-
 }

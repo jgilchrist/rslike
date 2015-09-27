@@ -7,7 +7,6 @@ pub struct Offset {
 }
 
 impl Offset {
-
     pub fn new(x: i32, y: i32) -> Offset {
         Offset { x: x, y: y }
     }
@@ -15,7 +14,6 @@ impl Offset {
     pub fn zero() -> Offset {
         Offset { x: 0, y: 0 }
     }
-
 }
 
 impl AsTuple<i32> for Offset {

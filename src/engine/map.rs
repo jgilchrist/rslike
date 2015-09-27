@@ -14,7 +14,6 @@ pub struct Map {
 }
 
 impl Map {
-
     /// Creates a new map from a string.
     pub fn from_string(s: String) -> Map {
         let lines: Vec<&str> = s.split('\n')
@@ -82,5 +81,4 @@ impl Map {
     pub fn width(&self) -> i32 {
         self.tiles[0].len() as i32
     }
-
 }

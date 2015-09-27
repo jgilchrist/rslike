@@ -37,7 +37,6 @@ pub struct MessageList {
 }
 
 impl MessageList {
-
     pub fn new() -> MessageList {
         MessageList { messages: vec![] }
     }
@@ -53,5 +52,4 @@ impl MessageList {
     pub fn items(&self) -> Iter<Message> {
         self.messages.iter()
     }
-
 }

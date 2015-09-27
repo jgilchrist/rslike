@@ -26,7 +26,6 @@ impl PauseScreen {
 }
 
 impl Screen for PauseScreen {
-
     #[allow(unused)]
     fn input(&mut self, game: &mut Game, console: &mut Console) -> Option<ScreenChange> {
         if let Some(key) = console.check_for_keypress() {
@@ -69,5 +68,4 @@ impl Screen for PauseScreen {
             }
         }
     }
-
 }

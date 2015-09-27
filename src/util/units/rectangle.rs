@@ -6,7 +6,6 @@ pub struct Rectangle {
 }
 
 impl Rectangle {
-
     pub fn new(location: Point, size: Size) -> Rectangle {
         Rectangle { location: location, size: size }
     }
@@ -34,5 +33,4 @@ impl Rectangle {
     pub fn height(&self) -> i32 {
         return self.size.y;
     }
-
 }
