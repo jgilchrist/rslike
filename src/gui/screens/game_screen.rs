@@ -137,7 +137,7 @@ impl GameScreen {
         }
 
         if adjusted_pos.x >= self.map.rect.inner_location().x && adjusted_pos.y >= self.map.rect.inner_location().y {
-            self.map.put_plain(console, pos, '@');
+            self.map.put_plain(console, pos - self.map_view, '@');
         }
     }
 
