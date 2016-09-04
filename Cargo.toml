@@ -10,4 +10,4 @@ test = false
 doctest = false
 
 [dependencies]
-tcod = "0.9"
+tcod = "0.10.0"
