@@ -14,9 +14,7 @@ pub enum Command {
 impl Game {
     /// Creates a new game.
     pub fn new() -> Game {
-        Game {
-            world: World::new(),
-        }
+        Game { world: World::new() }
     }
 
     pub fn do_command(&mut self, cmd: Command) {
@@ -27,7 +25,5 @@ impl Game {
         }
     }
 
-    pub fn step(&mut self) {
-
-    }
+    pub fn step(&mut self) {}
 }

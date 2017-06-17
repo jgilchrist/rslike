@@ -42,11 +42,23 @@ impl MessageList {
     }
 
     pub fn info(&mut self, text: &str) {
-        self.messages.insert(0, Message { text: text.to_string(), ty: MessageType::Info });
+        self.messages.insert(
+            0,
+            Message {
+                text: text.to_string(),
+                ty: MessageType::Info,
+            },
+        );
     }
 
     pub fn error(&mut self, text: &str) {
-        self.messages.insert(0, Message { text: text.to_string(), ty: MessageType::Error });
+        self.messages.insert(
+            0,
+            Message {
+                text: text.to_string(),
+                ty: MessageType::Error,
+            },
+        );
     }
 
     pub fn items(&self) -> Iter<Message> {

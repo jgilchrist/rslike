@@ -8,8 +8,7 @@ pub struct MenuScreen {
     menu: Menu<MainMenu>,
 }
 
-static LOGO: &'static str =
-       "                                 \n\
+static LOGO: &'static str = "                                 \n\
         ##### ##### #     #  #   # ##### \n\
         #   # #     #     #  #  #  #     \n\
         #   # #     #     #  # #   #     \n\
@@ -25,14 +24,12 @@ enum MainMenu {
 
 impl MenuScreen {
     pub fn new() -> Box<Screen> {
-        Box::new(
-            MenuScreen {
-                menu: Menu::new(vec![
-                                    MenuOption("Start Game", MainMenu::StartGame),
-                                    MenuOption("Exit Game", MainMenu::Exit),
-                                ]),
-            }
-        )
+        Box::new(MenuScreen {
+            menu: Menu::new(vec![
+                MenuOption("Start Game", MainMenu::StartGame),
+                MenuOption("Exit Game", MainMenu::Exit),
+            ]),
+        })
     }
 }
 
@@ -49,10 +46,12 @@ impl Screen for MenuScreen {
                 }
                 Key::Enter => {
                     match *self.menu.selected().option() {
-                        MainMenu::StartGame => return Some(ScreenChange::AddScreen(screens::GameScreen::new())),
+                        MainMenu::StartGame => {
+                            return Some(ScreenChange::AddScreen(screens::GameScreen::new()))
+                        }
                         MainMenu::Exit => return Some(ScreenChange::ExitGame),
                     }
-                },
+                }
                 _ => {}
             }
         }

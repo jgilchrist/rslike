@@ -1,9 +1,9 @@
-use util::units::{AsTuple};
+use util::units::AsTuple;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Offset {
     pub x: i32,
-    pub y: i32
+    pub y: i32,
 }
 
 impl Offset {

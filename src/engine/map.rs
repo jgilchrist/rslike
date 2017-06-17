@@ -16,9 +16,7 @@ pub struct Map {
 impl Map {
     /// Creates a new map from a string.
     pub fn from_string(s: String) -> Map {
-        let lines: Vec<&str> = s.split('\n')
-                                   .filter(|l| !l.is_empty())
-                                   .collect();
+        let lines: Vec<&str> = s.split('\n').filter(|l| !l.is_empty()).collect();
 
         let expected_line_length = lines.first().expect("Map string contained no lines").len();
 
@@ -26,11 +24,10 @@ impl Map {
             panic!("Different length lines in level string")
         }
 
-        let tiles: Vec<Vec<Tile>> = lines.iter()
-                                         .map(|l| l.chars()
-                                                   .map(|c| Tile::from_char(c))
-                                                   .collect())
-                                         .collect();
+        let tiles: Vec<Vec<Tile>> = lines
+            .iter()
+            .map(|l| l.chars().map(|c| Tile::from_char(c)).collect())
+            .collect();
 
         let mut starting_position = None;
 
@@ -42,7 +39,8 @@ impl Map {
             }
         }
 
-        let starting_position = starting_position.expect("Map string did not contain a starting position, '@'");
+        let starting_position = starting_position
+            .expect("Map string did not contain a starting position, '@'");
 
         let size = Size::new(tiles.len() as i32, tiles[0].len() as i32);
 
@@ -53,11 +51,17 @@ impl Map {
         }
     }
 
-    pub fn from_file<T>(path: T) -> Map where T: AsRef<Path> {
+    pub fn from_file<T>(path: T) -> Map
+    where
+        T: AsRef<Path>,
+    {
         let mut level_file = File::open(path).ok().expect("Could not find level file");
 
         let mut level_string = String::new();
-        level_file.read_to_string(&mut level_string).ok().expect("Could not read from level file");
+        level_file
+            .read_to_string(&mut level_string)
+            .ok()
+            .expect("Could not read from level file");
 
         Map::from_string(level_string)
     }

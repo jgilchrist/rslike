@@ -5,7 +5,7 @@ use std::ops::{Add, Sub};
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Size {
     pub x: i32,
-    pub y: i32
+    pub y: i32,
 }
 
 impl Size {
@@ -18,8 +18,11 @@ impl Add for Size {
     type Output = Size;
 
     fn add(self, other: Size) -> Size {
-        let (ox, oy) : (i32, i32) = other.as_tuple();
-        Size { x: self.x + ox, y: self.y + oy }
+        let (ox, oy): (i32, i32) = other.as_tuple();
+        Size {
+            x: self.x + ox,
+            y: self.y + oy,
+        }
     }
 }
 
@@ -27,8 +30,11 @@ impl Add<Offset> for Size {
     type Output = Size;
 
     fn add(self, other: Offset) -> Size {
-        let (ox, oy) : (i32, i32) = other.as_tuple();
-        Size { x: self.x + ox, y: self.y + oy }
+        let (ox, oy): (i32, i32) = other.as_tuple();
+        Size {
+            x: self.x + ox,
+            y: self.y + oy,
+        }
     }
 }
 
@@ -37,8 +43,11 @@ impl Add<(i32, i32)> for Size {
     type Output = Size;
 
     fn add(self, other: (i32, i32)) -> Size {
-        let (ox, oy) : (i32, i32) = other;
-        Size { x: self.x + ox, y: self.y + oy }
+        let (ox, oy): (i32, i32) = other;
+        Size {
+            x: self.x + ox,
+            y: self.y + oy,
+        }
     }
 }
 
@@ -46,8 +55,11 @@ impl Sub for Size {
     type Output = Size;
 
     fn sub(self, other: Size) -> Size {
-        let (ox, oy) : (i32, i32) = other.as_tuple();
-        Size { x: self.x - ox, y: self.y - oy }
+        let (ox, oy): (i32, i32) = other.as_tuple();
+        Size {
+            x: self.x - ox,
+            y: self.y - oy,
+        }
     }
 }
 
@@ -55,8 +67,11 @@ impl Sub<Offset> for Size {
     type Output = Size;
 
     fn sub(self, other: Offset) -> Size {
-        let (ox, oy) : (i32, i32) = other.as_tuple();
-        Size { x: self.x - ox, y: self.y - oy }
+        let (ox, oy): (i32, i32) = other.as_tuple();
+        Size {
+            x: self.x - ox,
+            y: self.y - oy,
+        }
     }
 }
 
@@ -65,7 +80,10 @@ impl Sub<(i32, i32)> for Size {
 
     fn sub(self, other: (i32, i32)) -> Size {
         let (ox, oy) = other;
-        Size { x: self.x - ox, y: self.y - oy }
+        Size {
+            x: self.x - ox,
+            y: self.y - oy,
+        }
     }
 }
 

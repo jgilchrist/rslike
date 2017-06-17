@@ -6,7 +6,7 @@ use util::units::Size;
 #[derive(PartialEq)]
 pub enum State {
     Running,
-    Exited
+    Exited,
 }
 
 pub struct GUI {
@@ -39,32 +39,37 @@ impl GUI {
     }
 
     fn handle_input(&mut self) {
-        let outcome = self.screens.first_mut()
-                                  .expect("No screen to display")
-                                  .input(&mut self.game, &mut self.console);
+        let outcome = self.screens
+            .first_mut()
+            .expect("No screen to display")
+            .input(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn update(&mut self) {
-        let outcome = self.screens.first_mut()
-                                  .expect("No screen to display")
-                                  .update(&mut self.game, &mut self.console);
+        let outcome = self.screens
+            .first_mut()
+            .expect("No screen to display")
+            .update(&mut self.game, &mut self.console);
         self.update_screens(outcome);
     }
 
     fn render(&mut self) {
         self.console.clear();
-        self.screens.first_mut()
-                    .expect("No screen to display")
-                    .render(&mut self.game, &mut self.console);
+        self.screens
+            .first_mut()
+            .expect("No screen to display")
+            .render(&mut self.game, &mut self.console);
         self.console.flush();
     }
 
     fn update_screens(&mut self, outcome: Option<ScreenChange>) {
         match outcome {
-            Some(ScreenChange::AddScreen(screen)) => { self.screens.insert(0, screen) },
-            Some(ScreenChange::RemoveScreen) => { self.screens.remove(0); }
-            Some(ScreenChange::ExitGame) => { self.state = State::Exited },
+            Some(ScreenChange::AddScreen(screen)) => self.screens.insert(0, screen),
+            Some(ScreenChange::RemoveScreen) => {
+                self.screens.remove(0);
+            }
+            Some(ScreenChange::ExitGame) => self.state = State::Exited,
             None => {}
         }
     }

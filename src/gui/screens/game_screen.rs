@@ -1,6 +1,6 @@
 use engine::{Game, Command, MessageType, Tile};
 use engine::log;
-use gui::{primitives};
+use gui::primitives;
 use gui::{Console, Colors, Key, Widget};
 use gui::screens::{self, Screen, ScreenChange};
 use util::units::{AsTuple, Direction, Point, Size};
@@ -19,14 +19,12 @@ impl GameScreen {
         let map_widget_location = Point::new(15, 0);
         let message_widget_location = Point::new(15, 40);
 
-        Box::new(
-            GameScreen {
-                map: Widget::new(map_widget_location, Size::new(64, 39)),
-                info: Widget::new(info_widget_location, Size::new(14, 49)),
-                messages: Widget::new(message_widget_location, Size::new(64, 9)),
-                map_view: Point::new(0, 0),
-            }
-        )
+        Box::new(GameScreen {
+            map: Widget::new(map_widget_location, Size::new(64, 39)),
+            info: Widget::new(info_widget_location, Size::new(14, 49)),
+            messages: Widget::new(message_widget_location, Size::new(64, 9)),
+            map_view: Point::new(0, 0),
+        })
     }
 }
 
@@ -37,19 +35,19 @@ impl Screen for GameScreen {
             match key {
                 Key::Up => {
                     game.do_command(Command::Walk(Direction::Up));
-                },
+                }
                 Key::Down => {
                     game.do_command(Command::Walk(Direction::Down));
-                },
+                }
                 Key::Left => {
                     game.do_command(Command::Walk(Direction::Left));
-                },
+                }
                 Key::Right => {
                     game.do_command(Command::Walk(Direction::Right));
-                },
+                }
                 Key::Escape => {
                     return Some(ScreenChange::AddScreen(screens::PauseScreen::new()));
-                },
+                }
                 _ => {}
             }
         }
@@ -91,17 +89,23 @@ impl GameScreen {
         let map = &game.world.map;
 
         let (ux, uy) = self.map_view.as_tuple();
-        let (width, height) : (usize, usize) = self.map.rect.inner_size().as_tuple();
+        let (width, height): (usize, usize) = self.map.rect.inner_size().as_tuple();
 
-        for (y, line) in map.tiles[uy .. uy + height + 1].iter().enumerate() {
-            for (x, cell) in line[ux .. ux + width + 1].iter().enumerate() {
+        for (y, line) in map.tiles[uy..uy + height + 1].iter().enumerate() {
+            for (x, cell) in line[ux..ux + width + 1].iter().enumerate() {
                 let bg_color = match *cell {
                     Tile::Empty => Colors::BLACK,
                     Tile::Wall => Colors::DARKER_GREY,
                     Tile::Floor => Colors::DARKEST_SEPIA,
                 };
 
-                self.map.put(console, Point::new(x as i32, y as i32), ' ', Colors::WHITE, bg_color);
+                self.map.put(
+                    console,
+                    Point::new(x as i32, y as i32),
+                    ' ',
+                    Colors::WHITE,
+                    bg_color,
+                );
             }
         }
     }
@@ -136,7 +140,9 @@ impl GameScreen {
             }
         }
 
-        if adjusted_pos.x >= self.map.rect.inner_location().x && adjusted_pos.y >= self.map.rect.inner_location().y {
+        if adjusted_pos.x >= self.map.rect.inner_location().x &&
+            adjusted_pos.y >= self.map.rect.inner_location().y
+        {
             self.map.put_plain(console, pos - self.map_view, '@');
         }
     }
@@ -152,14 +158,20 @@ impl GameScreen {
                     MessageType::Error => Colors::RED,
                 };
 
-                self.messages.print(console, Point::new(0, i as i32), msg.text(), message_color, Colors::BLACK);
+                self.messages.print(
+                    console,
+                    Point::new(0, i as i32),
+                    msg.text(),
+                    message_color,
+                    Colors::BLACK,
+                );
             }
         });
     }
 
     #[allow(unused)]
     fn view_can_move_up(&self, game: &Game) -> bool {
-        self.map_view.y  > 0
+        self.map_view.y > 0
     }
 
     #[allow(unused)]

@@ -14,14 +14,12 @@ enum PauseMenu {
 
 impl PauseScreen {
     pub fn new() -> Box<Screen> {
-        Box::new(
-            PauseScreen {
-                menu: Menu::new(vec![
-                                    MenuOption("Resume Game", PauseMenu::Resume),
-                                    MenuOption("Exit Game", PauseMenu::Exit),
-                                ]),
-            }
-        )
+        Box::new(PauseScreen {
+            menu: Menu::new(vec![
+                MenuOption("Resume Game", PauseMenu::Resume),
+                MenuOption("Exit Game", PauseMenu::Exit),
+            ]),
+        })
     }
 }
 
@@ -41,7 +39,7 @@ impl Screen for PauseScreen {
                         PauseMenu::Resume => return Some(ScreenChange::RemoveScreen),
                         PauseMenu::Exit => return Some(ScreenChange::ExitGame),
                     }
-                },
+                }
                 Key::Escape => return Some(ScreenChange::RemoveScreen),
                 _ => {}
             }

@@ -24,17 +24,30 @@ impl Widget {
         console.print_plain(self.adjusted_position(pos), text);
     }
 
-    pub fn print(&self, console: &mut Console, pos: Point, text: &str, f_color: Color, b_color: Color) {
+    pub fn print(
+        &self,
+        console: &mut Console,
+        pos: Point,
+        text: &str,
+        f_color: Color,
+        b_color: Color,
+    ) {
         console.print(self.adjusted_position(pos), text, f_color, b_color);
     }
 
-    pub fn print_align(&self, console: &mut Console, pos: Point, text: &str, alignment: tcod::TextAlignment) {
+    pub fn print_align(
+        &self,
+        console: &mut Console,
+        pos: Point,
+        text: &str,
+        alignment: tcod::TextAlignment,
+    ) {
         console.print_align(self.adjusted_position(pos), text, alignment);
     }
 
     // TODO: How to clear a subset of the console?
     // pub fn clear(&mut self) {
-        // self.console.clear();
+    // self.console.clear();
     // }
 
     fn adjusted_position(&self, pos: Point) -> Point {

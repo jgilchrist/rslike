@@ -8,15 +8,24 @@ pub struct Rectangle {
 
 impl Rectangle {
     pub fn new(location: Point, size: Size) -> Rectangle {
-        Rectangle { location: location, size: size }
+        Rectangle {
+            location: location,
+            size: size,
+        }
     }
 
     pub fn translate(&self, offset: Offset) -> Rectangle {
-        Rectangle { location: self.location + offset, size: self.size }
+        Rectangle {
+            location: self.location + offset,
+            size: self.size,
+        }
     }
 
     pub fn resize(&self, offset: Offset) -> Rectangle {
-        Rectangle { location: self.location, size: self.size + offset }
+        Rectangle {
+            location: self.location,
+            size: self.size + offset,
+        }
     }
 
     pub fn location(&self) -> Point {

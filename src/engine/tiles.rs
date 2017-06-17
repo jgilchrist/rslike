@@ -27,7 +27,7 @@ impl FromChar for Tile {
             ' ' => Tile::Empty,
             '.' | '@' => Tile::Floor,
             '#' => Tile::Wall,
-            _ => panic!("No valid tile for character {}", c)
+            _ => panic!("No valid tile for character {}", c),
         }
     }
 }

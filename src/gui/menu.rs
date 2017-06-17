@@ -15,12 +15,14 @@ impl<T> MenuOption<T> {
     pub fn option(&self) -> &T {
         &self.1
     }
-
 }
 
 impl<T> Menu<T> {
     pub fn new(menu_items: Vec<MenuOption<T>>) -> Menu<T> {
-        Menu { menu_items: menu_items, selected: 0 }
+        Menu {
+            menu_items: menu_items,
+            selected: 0,
+        }
     }
 
     pub fn next(&mut self) {
@@ -40,7 +42,7 @@ impl<T> Menu<T> {
     }
 
     pub fn is_selected(&self, index: usize) -> bool {
-        self.selected == index        
+        self.selected == index
     }
 
     pub fn items(&self) -> Iter<MenuOption<T>> {
